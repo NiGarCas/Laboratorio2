@@ -5,10 +5,17 @@
  */
 package PanaderiasElTriunfo_visualizacion;
 
+import java.awt.GridLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author nicol
  */
-public class PanelPromocion {
-    
+public class PanelPromocion extends JPanel{
+    public PanelPromocion() {
+     
+    }
 }

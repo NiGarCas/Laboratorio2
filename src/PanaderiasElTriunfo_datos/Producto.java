@@ -11,9 +11,38 @@ package PanaderiasElTriunfo_datos;
  */
 public class Producto {
     private String nombre;
-    private String proovedor;
-    private double costo;
     private double precio;
     private int cantidad_actual;
-    private int cantidad_vendida;
+    private int dias_descuento;
+
+    public Producto(String nombre, double precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.cantidad_actual = 0;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public int getCantidad_actual() {
+        return cantidad_actual;
+    }
+
+    public void setCantidad_actual(int cantidad_actual) {
+        this.cantidad_actual = cantidad_actual;
+    }
+    
 }
