@@ -76,8 +76,8 @@ public class SucursalPanaderia {
         boolean a = false;
         for(int i = 0; i < this.productos.size(); i++){
             if(this.productos.get(i).getNombre().equals(nombreproducto)){
-                Producto producto = this.productos.get(i);
-                this.productos.get(i).setPrecio(this.productos.get(i).getPrecio()*(1 - (descuento/100)));
+                this.productos.get(i).setDias_descuento(dias);
+                this.productos.get(i).setDescuento(descuento);
                 a = true;
                 break;
             }
@@ -254,5 +254,10 @@ public class SucursalPanaderia {
         }
         this.setDia(nuevodia);
         this.setMes(month);
+        for(int i = 0; i < this.productos.size(); i++){
+            this.productos.get(i).regresarAPrecioNormal();
+            this.productos.get(i).setDias_descuento(this.productos.get(i).getDias_descuento() - 1);
+            this.productos.get(i).aplicarDescuento();
+        }   
     }
 }
