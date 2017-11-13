@@ -134,30 +134,29 @@ public class Partida {
         this.panel = panel;
     }
     
-    public int lanzar(int tiempo){
-        switch (tiempo) {
-            case 1:
-                this.resortera.getEstado().setImagen(this.resortera.getEstado().getImagen2());
-                break;
-            default:
-                this.resortera.getEstado().setImagen(this.resortera.getEstado().getImagen3());
-                break;
+    public double lanzar(double tiempo){
+        if(tiempo < 0.5 && tiempo > 0.2){
+            this.resortera.getEstado().setImagen(this.resortera.getEstado().getImagen2());
+        }else if (tiempo < 0.8 && tiempo > 0.5){
+            this.resortera.getEstado().setImagen(this.resortera.getEstado().getImagen3());
         }
+
         if(tiempo == 0){
             this.resortera.getPajaro().setX(this.resortera.getPajaro().getX_inicial());
             this.resortera.getPajaro().setY(this.resortera.getPajaro().getY_inicial());
         }else{
             int x_actual = this.resortera.getPajaro().getX();
             int y_actual = this.resortera.getPajaro().getY();
-            int x_nuevo = x_actual +13;
-            int y_nuevo = y_actual +1;
-//            int x_nuevo = (int) (x_actual + ((tiempo * 80) * this.resortera.getEstado().getCosAngulo()));
-//            int y_nuevo = (int) -(y_actual + ((tiempo * 80) * this.resortera.getEstado().getSinAngulo())-(5 * (tiempo*tiempo)));
+//            int x_nuevo = x_actual +13;
+//            int y_nuevo = y_actual +1;
+            System.out.println("TIEMPO: " + tiempo);
+            int x_nuevo = (int) (x_actual + ((16 * tiempo) * this.resortera.getEstado().getCosAngulo()));
+            int y_nuevo = (int) ( y_actual -((16 * tiempo)* this.resortera.getEstado().getSinAngulo())+ 7*(tiempo*tiempo) );
             this.resortera.getPajaro().setX(x_nuevo);
             this.resortera.getPajaro().setY(y_nuevo);
             
         }
-        tiempo = tiempo + 1;
+        tiempo = tiempo + (0.035);
         for(int i = 0; i<15;i++){
             if(this.getResortera().getPajaro().getArea().intersects(this.getBloques()[i].getArea())){
                 this.vidas--;
@@ -171,7 +170,7 @@ public class Partida {
                         this.getResortera().getEstado().setImagen(this.getResortera().getEstado().getImagen1());
                         this.getResortera().setEstado(this.getResortera().getPosiciones()[0]);
                         this.panel.setLanzando(false);
-                        this.panel.setTiempo(0);
+                        tiempo = 0;
                         break;
                     }
                 }
@@ -203,7 +202,7 @@ public class Partida {
                 System.out.println(this.getCerdos()[i].getX());
                 System.out.println(this.getCerdos()[i].getY());
                 this.panel.setLanzando(false);
-                this.panel.setTiempo(0);
+                tiempo = 0;
             }
         }
 

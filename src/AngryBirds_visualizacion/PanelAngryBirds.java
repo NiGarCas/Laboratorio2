@@ -34,13 +34,13 @@ public class PanelAngryBirds extends JPanel implements ActionListener, MouseList
     private Timer timer ;
     private Partida partida;
     private boolean lanzando = false;
-    private int tiempo;
+    private double tiempo;
     private VentanaVisualizacion ventana;
     
     public PanelAngryBirds(VentanaVisualizacion ventana){
         //Lanza un evento de tipo ActionListener cada 25 Milisegundo
         //Se hace referencia a this porque la misma clase procesa el evento
-        this.timer = new Timer(35, this);
+        this.timer = new Timer(25, this);
         //Registrar evento del Teclado
         setFocusable(true); //Debe estar en modo Focus para que puede detectar el evento
         addKeyListener(new EventosTeclado()); //Inner class que procesa los eventos del teclado
@@ -166,6 +166,7 @@ public class PanelAngryBirds extends JPanel implements ActionListener, MouseList
             JOptionPane.showMessageDialog(null,"JUEGO TERMINADO - PUNTUACIÓN FINAL: " + this.partida.getPuntuacion() + "/32");
         }
         if(this.partida.getPuntuacion() == 32){
+            this.ventana.dispose();
             JOptionPane.showMessageDialog(null,"FELICIDADES, HA GANADO EL JUEGO");
         }
     }
@@ -174,7 +175,9 @@ public class PanelAngryBirds extends JPanel implements ActionListener, MouseList
     @Override
     public void actionPerformed(ActionEvent e) {
         if (lanzando == true){
+            System.out.println(tiempo);
             tiempo = partida.lanzar(tiempo);
+            System.out.println(tiempo);
         }
         repaint();
     }
@@ -193,11 +196,11 @@ public class PanelAngryBirds extends JPanel implements ActionListener, MouseList
         this.lanzando = lanzando;
     }
 
-    public int getTiempo() {
+    public double getTiempo() {
         return tiempo;
     }
 
-    public void setTiempo(int tiempo) {
+    public void setTiempo(double tiempo) {
         this.tiempo = tiempo;
     }
     
