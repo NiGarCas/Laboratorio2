@@ -5,10 +5,28 @@
  */
 package AngryBirds_visualizacion;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author nicol
  */
-public class VentanaVisualizacion {
+public class VentanaVisualizacion extends JFrame{
+    public VentanaVisualizacion() {
+        initUI();
+    }
+
+    private void initUI() {
+        add(new PanelAngryBirds());
+        setSize(948, 519);
+        setTitle("Ejercicio 1");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }    
     
+    public static void main(String[] args) {
+        VentanaVisualizacion ex = new VentanaVisualizacion();
+        ex.setVisible(true);
+       
+    }
 }

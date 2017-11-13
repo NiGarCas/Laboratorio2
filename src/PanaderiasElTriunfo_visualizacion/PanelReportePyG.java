@@ -5,10 +5,25 @@
  */
 package PanaderiasElTriunfo_visualizacion;
 
+import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
+
 /**
  *
  * @author nicol
  */
-public class PanelReportePyG {
+public class PanelReportePyG extends Panel{
+    public PanelReportePyG(VentanaVisualizacion ventana) {
+        super(ventana);
+    }
     
+    @Override
+    public void serAgregado() {
+        
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

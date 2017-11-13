@@ -10,6 +10,7 @@ import PanaderiasElTriunfo_datos.SucursalPanaderia;
 import PanaderiasElTriunfo_visualizacion.PanelAgregarProducto;
 import PanaderiasElTriunfo_visualizacion.PanelCompra;
 import PanaderiasElTriunfo_visualizacion.PanelPorMayor;
+import PanaderiasElTriunfo_visualizacion.PanelPorMenor;
 import PanaderiasElTriunfo_visualizacion.PanelPrincipal;
 import PanaderiasElTriunfo_visualizacion.PanelPromocion;
 import PanaderiasElTriunfo_visualizacion.VentanaVisualizacion;
@@ -43,10 +44,7 @@ public class LogicaPanaderias {
         SucursalPanaderia eltriunfo = new SucursalPanaderia(1,enero);
         VentanaVisualizacion ventana = new VentanaVisualizacion(eltriunfo);
         Controlador controlador = new Controlador(ventana, eltriunfo);
-        PanelAgregarProducto agregar_producto = new PanelAgregarProducto(ventana);
-        PanelPromocion promocion = new PanelPromocion(ventana);
-        PanelPrincipal principal = new PanelPrincipal(ventana);
-        ventana.add(principal);
+        ventana.agregarPanel(ventana.getPrincipal());
         controlador.inicialAplicacion();
     }
 
