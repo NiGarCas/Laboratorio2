@@ -17,6 +17,7 @@ public class EstadoResortera {
     private String imagen1;
     private String imagen2;
     private String imagen3;
+    private String imagen;
 
     public EstadoResortera(int xpajaro, int ypajaro, double sinAngulo, double cosAngulo, String imagen1, String imagen2) {
         this.xpajaro = xpajaro;
@@ -26,6 +27,7 @@ public class EstadoResortera {
         this.imagen1 = imagen1;
         this.imagen2 = imagen2;
         this.imagen3 = "21.png";
+        this.imagen = this.imagen1;
     }
 
     public int getXpajaro() {
@@ -82,6 +84,14 @@ public class EstadoResortera {
 
     public void setImagen3(String imagen3) {
         this.imagen3 = imagen3;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
    
     

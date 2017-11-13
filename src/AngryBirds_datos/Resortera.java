@@ -37,6 +37,22 @@ public class Resortera {
         this.pajaro = pajaro;
     }
     
+    public EstadoResortera getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoResortera estado) {
+        this.estado = estado;
+    }
+
+    public EstadoResortera[] getPosiciones() {
+        return posiciones;
+    }
+
+    public void setPosiciones(EstadoResortera[] posiciones) {
+        this.posiciones = posiciones;
+    }
+    
     public void cambiarEstado(String sentido){
         if (sentido.equals("derecha")){
             for (int i = 0;i<10;i++){
@@ -54,25 +70,8 @@ public class Resortera {
             }
         }
     }
-
-    public EstadoResortera getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoResortera estado) {
-        this.estado = estado;
-    }
     
-    public int lanzar(int tiempo){
-        System.out.println("TIEMPO: " + tiempo);
-        int x = (int) (this.pajaro.getX() + 20*(this.estado.getCosAngulo()*tiempo));
-        this.pajaro.setX(x);
-        System.out.println(this.pajaro.getX());
-        int y = (int) (-(this.pajaro.getY() + (20*(this.estado.getSinAngulo()*tiempo))-(4.9*(tiempo*tiempo))));
-        this.pajaro.setY(y);
-        System.out.println(this.pajaro.getY());
-        tiempo++;
-        return tiempo;
+    public void siguiente_pajaro(){
+        
     }
-    
 }

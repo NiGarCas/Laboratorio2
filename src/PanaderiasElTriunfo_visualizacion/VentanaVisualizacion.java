@@ -39,6 +39,7 @@ public class VentanaVisualizacion extends JFrame{
         this.setSize(600, 400);
         this.setTitle("Panaderias El Triunfo");
         this.setLayout(new BorderLayout());
+        this.setLocationRelativeTo(null);
         this.sucursal = sucursal;
         this.principal = new PanelPrincipal(this);
         this.agregar =new PanelAgregarProducto(this);

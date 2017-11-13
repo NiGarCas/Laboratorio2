@@ -17,9 +17,9 @@ public class VentanaVisualizacion extends JFrame{
     }
 
     private void initUI() {
-        add(new PanelAngryBirds());
+        add(new PanelAngryBirds(this));
         setSize(948, 519);
-        setTitle("Ejercicio 1");
+        setTitle("Angry Birds");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
     }    

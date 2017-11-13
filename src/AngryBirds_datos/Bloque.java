@@ -11,21 +11,12 @@ import java.awt.Rectangle;
  *
  * @author nicol
  */
-public class Cerdo {
+public class Bloque {
     private int x;
     private int y;
     private String imagen;
-    private int valor;
     private Rectangle area;
-    
-    public Cerdo(int x, int y, int valor) {
-        this.x = x;
-        this.y = y;
-        this.imagen = "cerdo.png";
-        this.area = new Rectangle(x,y,60,30);
-        this.valor = valor;
-    }
-    
+
     public int getX() {
         return x;
     }
@@ -38,29 +29,22 @@ public class Cerdo {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public void setArea() {
-        this.area = new Rectangle(x,y,40,40);
-    }
-
     public Rectangle getArea() {
         return area;
     }
 
-    public int getValor() {
-        return valor;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
-    public void setX(int x) {
+    public void setArea(int x_, int y_) {
+        this.area = new Rectangle(x,y,x_,y_);
+    }
+
+    public Bloque(int x, int y) {
         this.x = x;
-    }
-
-    public void setY(int y) {
         this.y = y;
+        this.imagen = "bloque.png";
+        this.area = new Rectangle(x,y,60,30);
     }
-    
-    
 }
