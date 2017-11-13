@@ -12,36 +12,41 @@ import java.awt.Rectangle;
  * @author nicol
  */
 public class Pajaro {
+    
     private int x_inicial;
     private int y_inicial;
     private int x;
     private int y;
     private String imagen;
     private Rectangle area;
+    
+    public Pajaro() {
+        this.imagen = "pajaro.png";
+        this.area = new Rectangle(x,y,40,40);
+    }
 
     public int getX() {
         return x;
     }
-
+    
+    public void setX(int x) {
+        this.x = x;
+    }
+    
     public int getY() {
         return y;
     }
-
+    
+    public void setY(int y) {
+        this.y = y;
+    }
+    
     public String getImagen() {
         return imagen;
     }
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
-    }
-    
-    
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public int getX_inicial() {
@@ -66,10 +71,5 @@ public class Pajaro {
 
     public void setArea() {
         this.area.setLocation(x, y);
-    }
-
-    public Pajaro() {
-        this.imagen = "pajaro.png";
-        this.area = new Rectangle(x,y,40,40);
     }
 }

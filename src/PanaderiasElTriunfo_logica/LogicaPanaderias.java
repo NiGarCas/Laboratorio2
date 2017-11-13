@@ -7,26 +7,14 @@ package PanaderiasElTriunfo_logica;
 
 import PanaderiasElTriunfo_datos.Mes;
 import PanaderiasElTriunfo_datos.SucursalPanaderia;
-import PanaderiasElTriunfo_visualizacion.PanelAgregarProducto;
-import PanaderiasElTriunfo_visualizacion.PanelCompra;
-import PanaderiasElTriunfo_visualizacion.PanelPorMayor;
-import PanaderiasElTriunfo_visualizacion.PanelPorMenor;
-import PanaderiasElTriunfo_visualizacion.PanelPrincipal;
-import PanaderiasElTriunfo_visualizacion.PanelPromocion;
 import PanaderiasElTriunfo_visualizacion.VentanaVisualizacion;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 
 /**
  *
  * @author nicol
  */
 public class LogicaPanaderias {
-    
-    
+
     public static void main(String[] args){
         Mes enero = new Mes ("ENERO", 1, 31);
         Mes febrero = new Mes ("FEBRERO", 2, 28);
@@ -43,9 +31,8 @@ public class LogicaPanaderias {
         Mes[] meses = {enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre};
         SucursalPanaderia eltriunfo = new SucursalPanaderia(1,enero);
         VentanaVisualizacion ventana = new VentanaVisualizacion(eltriunfo);
-        Controlador controlador = new Controlador(ventana, eltriunfo);
         ventana.agregarPanel(ventana.getPrincipal());
-        controlador.inicialAplicacion();
+        ventana.setVisible(true);
     }
 
     

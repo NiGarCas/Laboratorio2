@@ -42,6 +42,31 @@ public class SucursalPanaderia {
     public void setMes(Mes mes) {
         this.mes = mes;
     }
+
+    public ArrayList<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(ArrayList<Producto> productos) {
+        this.productos = productos;
+    }
+
+    public ArrayList<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(ArrayList<Compra> compras) {
+        this.compras = compras;
+    }
+
+    public ArrayList<Venta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(ArrayList<Venta> ventas) {
+        this.ventas = ventas;
+    }
+    
     
     public boolean agregarProducto(String nombre, double precio){
         boolean a = false;

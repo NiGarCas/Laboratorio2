@@ -12,6 +12,7 @@ import java.awt.Rectangle;
  * @author nicol
  */
 public class Cerdo {
+    
     private int x;
     private int y;
     private String imagen;
@@ -37,15 +38,7 @@ public class Cerdo {
     public String getImagen() {
         return imagen;
     }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public void setArea() {
-        this.area = new Rectangle(x,y,40,40);
-    }
-
+    
     public Rectangle getArea() {
         return area;
     }
@@ -53,7 +46,7 @@ public class Cerdo {
     public int getValor() {
         return valor;
     }
-
+    
     public void setX(int x) {
         this.x = x;
     }
@@ -62,5 +55,12 @@ public class Cerdo {
         this.y = y;
     }
     
-    
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+
+    public void setArea() {
+        this.area = new Rectangle(x,y,40,40);
+    }
+  
 }

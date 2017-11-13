@@ -31,7 +31,7 @@ public class PanelPrincipal extends Panel{
         norte.add(new JLabel("PANADERÍA EL TRIUNFO"));
         norte.add(new JLabel(" "));
         JButton pasarDia = new JButton("PASAR AL DÍA SIGUIENTE");
-        pasarDia.addActionListener(controlador);
+        pasarDia.addActionListener(this);
         norte.add(pasarDia);
         norte.add(new JLabel(this.ventana.getSucursal().getDia() + " DE " + this.ventana.getSucursal().getMes().getNombre()));
         norte.add(new JLabel(" "));
@@ -43,43 +43,43 @@ public class PanelPrincipal extends Panel{
         this.izquierda = new JPanel(new GridLayout(7,1));
         izquierda.add(new JLabel("                         REGISTRO"));
         JButton regCompra = new JButton("Registrar Compra a proovedor");
-        regCompra.addActionListener(controlador);
+        regCompra.addActionListener(this);
         izquierda.add(regCompra);
         JButton regPorMayor = new JButton("Registrar Venta al por mayor");
-        regPorMayor.addActionListener(controlador);
+        regPorMayor.addActionListener(this);
         izquierda.add(regPorMayor);
         JButton regPorMenor = new JButton("Registrar Venta al por menor");
-        regPorMenor.addActionListener(controlador);
+        regPorMenor.addActionListener(this);
         izquierda.add(regPorMenor);
 
         this.centro = new JPanel(new GridLayout(7,1));
         centro.add(new JLabel("                                  REPORTES"));
         JButton inventario = new JButton ("Inventario");
-        inventario.addActionListener(controlador);
+        inventario.addActionListener(this);
         centro.add(inventario);
         JButton caja = new JButton ("Caja");
-        caja.addActionListener(controlador);
+        caja.addActionListener(this);
         centro.add(caja);
         JButton movInventario = new JButton ("Movimiento del inventario");
-        movInventario.addActionListener(controlador);
+        movInventario.addActionListener(this);
         centro.add(movInventario);
-        JButton ventas = new JButton ("Histórico de ventas");
-        ventas.addActionListener(controlador);
+        JButton ventas = new JButton ("Ventas");
+        ventas.addActionListener(this);
         centro.add(ventas);
-        JButton pyg = new JButton ("Pérdidas y ganancias");
-        pyg.addActionListener(controlador);
+        JButton pyg = new JButton ("Ganancias");
+        pyg.addActionListener(this);
         centro.add(pyg);
         
         this.derecha = new JPanel(new GridLayout(7,1));
         derecha.add(new JLabel("                      PRODUCTOS"));
         JButton agregar = new JButton("Agregar producto");
-        agregar.addActionListener(controlador);
+        agregar.addActionListener(this);
         derecha.add(agregar);
         JButton eliminar = new JButton("Eliminar producto");
-        eliminar.addActionListener(controlador);
+        eliminar.addActionListener(this);
         derecha.add(eliminar);
         JButton cambiarPrecio = new JButton("Poner producto en promoción");
-        cambiarPrecio.addActionListener(controlador);
+        cambiarPrecio.addActionListener(this);
         derecha.add(cambiarPrecio);
         
         this.sur = new JPanel (new GridLayout(5,3));
@@ -144,24 +144,30 @@ public class PanelPrincipal extends Panel{
         this.ventana.add(this.centro, BorderLayout.CENTER);
         this.ventana.add(this.derecha, BorderLayout.EAST);
         this.ventana.add(this.sur, BorderLayout.SOUTH);
+        this.ventana.setTitle("Panaderia El Triunfo - Menú prinicpal");
     }
 
     @Override
     public void actionPerformed(ActionEvent evento) {
         JButton source = (JButton)evento.getSource();
         String boton = source.getText();
+        System.out.println(boton);
         if(boton.equals("PASAR AL DÍA SIGUIENTE")){
+            System.out.println(this.ventana.getSucursal().getMes().getNumero());
+            System.out.println(this.ventana.getSucursal().getDia());
             this.ventana.getSucursal().cambiarDeDia(this.ventana.getSucursal().getMes().getNumero(), this.ventana.getSucursal().getDia());
             Panel panel = this.ventana.getPanel_actual();
-            this.ventana.remove(this.ventana.getPanel_actual());
-            this.ventana.agregarPanel(this.ventana.getPrincipal());
-            this.ventana.repaint();
+            this.ventana.removeAll();
+            this.ventana.dispose();
+            this.ventana.add(this);
+            this.ventana.setVisible(true);
+//            this.ventana.agregarPanel(this);
         }else if(boton.equals("Registrar Compra a proovedor")){
             Panel panel = this.ventana.getPanel_actual();
             this.ventana.remove(this.ventana.getPanel_actual());
             this.ventana.setPanel_actual(this.ventana.getCompra());
             this.ventana.agregarPanel(this.ventana.getCompra());
-        }else if(boton.equals("PASAR AL DÍA SIGUIENTE")){
+        }else if(boton.equals("ooo")){
                 
         }
 

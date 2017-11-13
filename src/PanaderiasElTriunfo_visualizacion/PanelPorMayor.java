@@ -26,27 +26,27 @@ public class PanelPorMayor extends Panel{
         this.centro = new JPanel(new GridLayout(10,1));
         centro.add(new JLabel("Nombre del producto comprado:"));
         JTextField campo1 = new JTextField(10);
-        campo1.addActionListener(controlador);
+        campo1.addActionListener(this);
         centro.add(campo1);
         centro.add(new JLabel("Cantidad  de producto comprado:"));
         JTextField campo2 = new JTextField(10);
-        campo2.addActionListener(controlador);
+        campo2.addActionListener(this);
         centro.add(campo2);
         centro.add(new JLabel("Costo total de la compra:"));
         JTextField campo3 = new JTextField(10);
-        campo3.addActionListener(controlador);
+        campo3.addActionListener(this);
         centro.add(campo3);
         centro.add(new JLabel("Nombre del proovedor:"));
         JTextField campo4 = new JTextField(10);
-        campo4.addActionListener(controlador);
+        campo4.addActionListener(this);
         centro.add(campo4);
         
         this.sur = new JPanel(new GridLayout(1,2));
         JButton registrar = new JButton("Registrar venta");
-        registrar.addActionListener(controlador);
+        registrar.addActionListener(this);
         sur.add(registrar);
         JButton cancelar = new JButton("Cancelar (Volver al menú principal)");
-        cancelar.addActionListener(controlador);
+        cancelar.addActionListener(this);
         sur.add(cancelar);
     }
 

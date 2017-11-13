@@ -12,21 +12,13 @@ import javax.swing.JFrame;
  * @author nicol
  */
 public class VentanaVisualizacion extends JFrame{
+    
     public VentanaVisualizacion() {
-        initUI();
-    }
-
-    private void initUI() {
         add(new PanelAngryBirds(this));
-        setSize(948, 519);
+        setSize(938, 509);
         setTitle("Angry Birds");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-    }    
-    
-    public static void main(String[] args) {
-        VentanaVisualizacion ex = new VentanaVisualizacion();
-        ex.setVisible(true);
-       
-    }
+        this.setResizable(false);
+    }     
 }

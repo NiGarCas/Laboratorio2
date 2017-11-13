@@ -6,7 +6,6 @@
 package PanaderiasElTriunfo_visualizacion;
 
 import PanaderiasElTriunfo_datos.SucursalPanaderia;
-import PanaderiasElTriunfo_logica.Controlador;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -18,7 +17,6 @@ import javax.swing.*;
  */
 public class VentanaVisualizacion extends JFrame{
     private SucursalPanaderia sucursal;
-    private Controlador controlador;
     private PanelPrincipal principal;
     private PanelAgregarProducto agregar;
     private PanelPromocion promocion;
@@ -34,7 +32,6 @@ public class VentanaVisualizacion extends JFrame{
 
     public VentanaVisualizacion(SucursalPanaderia sucursal) {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(400,250);
         this.setSize(600, 400);
         this.setTitle("Panaderias El Triunfo");
@@ -59,14 +56,6 @@ public class VentanaVisualizacion extends JFrame{
         this.add(panel);
         panel.serAgregado();
         this.pack();
-    }
-
-    public Controlador getControlador() {
-        return controlador;
-    }
-
-    public void setControlador(Controlador controlador) {
-        this.controlador = controlador;
     }
 
     public SucursalPanaderia getSucursal() {

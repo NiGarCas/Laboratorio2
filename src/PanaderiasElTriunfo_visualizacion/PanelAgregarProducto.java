@@ -24,22 +24,22 @@ public class PanelAgregarProducto extends Panel{
 
     public PanelAgregarProducto(VentanaVisualizacion ventana) {
         super(ventana);
-        this.centro = new JPanel(new GridLayout(6,1));
+        this.centro = new JPanel(new GridLayout(5,1));
         centro.add(new JLabel("Nombre del producto a agregar:"));
         JTextField campo1 = new JTextField(30);
-        campo1.addActionListener(controlador);
+        campo1.addActionListener(this);
         centro.add(campo1);
         centro.add(new JLabel("Precio al que se venderá el producto:"));
         JTextField campo2 = new JTextField(30);
-        campo2.addActionListener(controlador);
+        campo2.addActionListener(this);
         centro.add(campo2);
         
         this.sur = new JPanel(new GridLayout(1,2));
         JButton agregar = new JButton("Agregar Producto");
-        agregar.addActionListener(controlador);
+        agregar.addActionListener(this);
         sur.add(agregar);
         JButton cancelar = new JButton("Cancelar (Volver al menú principal)");
-        cancelar.addActionListener(controlador);
+        cancelar.addActionListener(this);
         sur.add(cancelar);
         
         

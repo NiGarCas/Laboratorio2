@@ -5,24 +5,19 @@
  */
 package PanaderiasElTriunfo_visualizacion;
 
-import PanaderiasElTriunfo_logica.Controlador;
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 /**
  *
  * @author nicol
  */
-public abstract class Panel extends JPanel{
+public abstract class Panel extends JPanel  implements ActionListener{
     protected VentanaVisualizacion ventana;
-    protected Controlador controlador;
 
     public Panel(VentanaVisualizacion ventana) {
         this.ventana = ventana;
-        this.controlador = this.ventana.getControlador();
     }
     
     public abstract void serAgregado();
-    public abstract void actionPerformed(ActionEvent evento);
 }

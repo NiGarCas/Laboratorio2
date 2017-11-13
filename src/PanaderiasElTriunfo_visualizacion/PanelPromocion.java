@@ -26,23 +26,23 @@ public class PanelPromocion extends Panel{
         this.centro = new JPanel(new GridLayout(7,1));
         centro.add(new JLabel("Nombre del producto que desea poner en promoción:"));
         JTextField campo1 = new JTextField(10);
-        campo1.addActionListener(controlador);
+        campo1.addActionListener(this);
         centro.add(campo1);
         centro.add(new JLabel("Descuento (%) que le desea aplicar al producto:"));
         JTextField campo2 = new JTextField(10);
-        campo2.addActionListener(controlador);
+        campo2.addActionListener(this);
         centro.add(campo2);
         centro.add(new JLabel("Número de dias que durará la promoción:"));
         JTextField campo3 = new JTextField(10);
-        campo3.addActionListener(controlador);
+        campo3.addActionListener(this);
         centro.add(campo3);
         
         this.sur = new JPanel(new GridLayout(1,2));
         JButton registrar = new JButton("Registrar promoción");
-        registrar.addActionListener(controlador);
+        registrar.addActionListener(this);
         sur.add(registrar);
         JButton cancelar = new JButton("Cancelar (Volver al menú principal)");
-        cancelar.addActionListener(controlador);
+        cancelar.addActionListener(this);
         sur.add(cancelar);
     }
 

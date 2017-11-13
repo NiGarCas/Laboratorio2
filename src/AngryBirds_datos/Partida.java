@@ -135,27 +135,7 @@ public class Partida {
     }
     
     public double lanzar(double tiempo){
-        if(tiempo < 0.5 && tiempo > 0.2){
-            this.resortera.getEstado().setImagen(this.resortera.getEstado().getImagen2());
-        }else if (tiempo < 0.8 && tiempo > 0.5){
-            this.resortera.getEstado().setImagen(this.resortera.getEstado().getImagen3());
-        }
-
-        if(tiempo == 0){
-            this.resortera.getPajaro().setX(this.resortera.getPajaro().getX_inicial());
-            this.resortera.getPajaro().setY(this.resortera.getPajaro().getY_inicial());
-        }else{
-            int x_actual = this.resortera.getPajaro().getX();
-            int y_actual = this.resortera.getPajaro().getY();
-//            int x_nuevo = x_actual +13;
-//            int y_nuevo = y_actual +1;
-            System.out.println("TIEMPO: " + tiempo);
-            int x_nuevo = (int) (x_actual + ((16 * tiempo) * this.resortera.getEstado().getCosAngulo()));
-            int y_nuevo = (int) ( y_actual -((16 * tiempo)* this.resortera.getEstado().getSinAngulo())+ 7*(tiempo*tiempo) );
-            this.resortera.getPajaro().setX(x_nuevo);
-            this.resortera.getPajaro().setY(y_nuevo);
-            
-        }
+        this.resortera.cambiarPosicionPajaro(tiempo);
         tiempo = tiempo + (0.035);
         for(int i = 0; i<15;i++){
             if(this.getResortera().getPajaro().getArea().intersects(this.getBloques()[i].getArea())){
@@ -205,7 +185,6 @@ public class Partida {
                 tiempo = 0;
             }
         }
-
         return tiempo;
     }
 }

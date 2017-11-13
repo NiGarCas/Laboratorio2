@@ -5,7 +5,11 @@
  */
 package PanaderiasElTriunfo_visualizacion;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -13,13 +17,33 @@ import javax.swing.JPanel;
  * @author nicol
  */
 public class PanelInventario extends Panel{
+    
+    private JPanel norte;
+    private JPanel centro;
+    
     public PanelInventario(VentanaVisualizacion ventana) {
         super(ventana);
+        this.centro = new JPanel(new GridLayout((this.ventana.getSucursal().getProductos().size() + 2),4));
+        centro.add(new JLabel("PRODUCCTO"));
+        centro.add(new JLabel("COSTO"));
+        centro.add(new JLabel("PRECIO"));
+        centro.add(new JLabel("CANTIDAD"));
+        centro.add(new JLabel(" "));
+        centro.add(new JLabel(" "));
+        centro.add(new JLabel(" "));
+        centro.add(new JLabel(" "));
+        for(int i = 0;i< this.ventana.getSucursal().getProductos().size(); i++){
+            centro.add(new JLabel("producto"));
+            centro.add(new JLabel("costo"));
+            centro.add(new JLabel("precio"));
+            centro.add(new JLabel("cantidad"));
+
+        }
     }
     
     @Override
     public void serAgregado() {
-        
+        this.ventana.add(centro, BorderLayout.CENTER);
     }
 
     @Override

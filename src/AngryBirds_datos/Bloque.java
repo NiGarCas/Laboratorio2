@@ -12,10 +12,18 @@ import java.awt.Rectangle;
  * @author nicol
  */
 public class Bloque {
+    
     private int x;
     private int y;
     private String imagen;
     private Rectangle area;
+    
+    public Bloque(int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.imagen = "bloque.png";
+        this.area = new Rectangle(x,y,60,30);
+    }
 
     public int getX() {
         return x;
@@ -37,14 +45,7 @@ public class Bloque {
         this.imagen = imagen;
     }
 
-    public void setArea(int x_, int y_) {
-        this.area = new Rectangle(x,y,x_,y_);
-    }
-
-    public Bloque(int x, int y) {
-        this.x = x;
-        this.y = y;
-        this.imagen = "bloque.png";
-        this.area = new Rectangle(x,y,60,30);
+    public void setArea(int ancho, int altura) {
+        this.area = new Rectangle(x,y,ancho,altura);
     }
 }
