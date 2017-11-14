@@ -20,4 +20,5 @@ public abstract class Panel extends JPanel  implements ActionListener{
     }
     
     public abstract void serAgregado();
+    public abstract void agregarComponentes();
 }

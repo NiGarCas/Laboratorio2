@@ -49,13 +49,15 @@ public class VentanaVisualizacion extends JFrame{
         this.movinventario = new PanelMovimientoInventario(this);
         this.ventas = new PanelReporteVentas(this);
         this.pyg = new PanelReportePyG(this);
+        this.panel_actual = this.principal;
     }
     
     public void agregarPanel(Panel panel){
         this.panel_actual = panel;
         this.add(panel);
-        panel.serAgregado();
-        this.pack();
+        panel_actual.serAgregado();
+        this.setVisible(true);
+    
     }
 
     public SucursalPanaderia getSucursal() {

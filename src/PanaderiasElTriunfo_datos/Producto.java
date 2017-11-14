@@ -37,7 +37,7 @@ public class Producto {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-
+    
     public int getCantidad_actual() {
         return cantidad_actual;
     }

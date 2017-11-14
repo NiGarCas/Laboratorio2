@@ -138,9 +138,7 @@ public class PanelAngryBirds extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (lanzando == true){
-            System.out.println(tiempo);
             tiempo = partida.lanzar(tiempo);
-            System.out.println(tiempo);
         }
         repaint();
     }

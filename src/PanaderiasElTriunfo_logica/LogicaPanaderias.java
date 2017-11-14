@@ -5,6 +5,7 @@
  */
 package PanaderiasElTriunfo_logica;
 
+import PanaderiasElTriunfo_datos.Fecha;
 import PanaderiasElTriunfo_datos.Mes;
 import PanaderiasElTriunfo_datos.SucursalPanaderia;
 import PanaderiasElTriunfo_visualizacion.VentanaVisualizacion;
@@ -29,11 +30,27 @@ public class LogicaPanaderias {
         Mes noviembre = new Mes ("NOVIEMBRE", 11, 30);
         Mes diciembre = new Mes ("DICIEMBRE", 12, 31);
         Mes[] meses = {enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre};
-        SucursalPanaderia eltriunfo = new SucursalPanaderia(1,enero);
+        Fecha[] fechas = new Fecha[365];
+        for (int i = 1; i<32;i++){
+            fechas[i-1] = new Fecha(i,enero);
+            fechas[i+58] = new Fecha(i,marzo);
+            fechas[i+119] = new Fecha(i,mayo);
+            fechas[i+180] = new Fecha(i,julio);
+            fechas[i+211] = new Fecha(i,agosto);
+            fechas[i+272] = new Fecha(i,octubre);
+            fechas[i+333] = new Fecha(i,diciembre);
+        }
+        for (int i = 1; i<31;i++){
+            fechas[i+89] = new Fecha(i,abril);
+            fechas[i+150] = new Fecha(i,junio);
+            fechas[i+242] = new Fecha(i,septiembre);
+            fechas[i+303] = new Fecha(i,noviembre);
+        }
+        for (int i = 1; i<29;i++){
+            fechas[i+30] = new Fecha(i,febrero);
+        }
+        SucursalPanaderia eltriunfo = new SucursalPanaderia(fechas);
         VentanaVisualizacion ventana = new VentanaVisualizacion(eltriunfo);
         ventana.agregarPanel(ventana.getPrincipal());
-        ventana.setVisible(true);
-    }
-
-    
+    }  
 }

@@ -27,13 +27,121 @@ public class PanelPrincipal extends Panel{
     
     public PanelPrincipal(VentanaVisualizacion ventana) {
         super(ventana);
+        this.agregarComponentes();
+    }
+
+    public JPanel getNorte() {
+        return norte;
+    }
+
+    public void setNorte(JPanel norte) {
+        this.norte = norte;
+    }
+
+    public JPanel getIzquierda() {
+        return izquierda;
+    }
+
+    public void setIzquierda(JPanel izquierda) {
+        this.izquierda = izquierda;
+    }
+
+    public JPanel getCentro() {
+        return centro;
+    }
+
+    public void setCentro(JPanel centro) {
+        this.centro = centro;
+    }
+
+    public JPanel getDerecha() {
+        return derecha;
+    }
+
+    public void setDerecha(JPanel derecha) {
+        this.derecha = derecha;
+    }
+
+    public JPanel getSur() {
+        return sur;
+    }
+
+    public void setSur(JPanel sur) {
+        this.sur = sur;
+    }
+
+    @Override
+    public void serAgregado() {
+        this.ventana.setLayout(new BorderLayout());
+        this.ventana.add(this.norte, BorderLayout.NORTH);
+        this.ventana.add(this.izquierda, BorderLayout.WEST);
+        this.ventana.add(this.centro, BorderLayout.CENTER);
+        this.ventana.add(this.derecha, BorderLayout.EAST);
+        this.ventana.add(this.sur, BorderLayout.SOUTH);
+        this.ventana.setTitle("Panaderia El Triunfo - Menú prinicpal");
+        this.ventana.pack();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+        JButton source = (JButton)evento.getSource();
+        String boton = source.getText();
+        switch (boton) {
+            case "PASAR AL DÍA SIGUIENTE":
+                this.ventana.getSucursal().cambiarDeDia();
+//                System.out.println(this.ventana.getSucursal().getFecha().getMes().getNumero());
+//                System.out.println(this.ventana.getSucursal().getDia());
+                this.removeAll();
+                this.agregarComponentes();
+                this.updateUI();
+                break;
+            case "Registrar Compra a proovedor":
+                this.ventana.setPanel_actual(this.ventana.getCompra());
+                this.ventana.getPanel_actual().updateUI();
+                break;
+            case "Registrar Venta al por mayor":
+                break;
+            case "Registrar Venta al por menor":
+                break;
+            case "Agregar producto":
+                break;
+            case "Eliminar producto":
+                String nombre = JOptionPane.showInputDialog(this.ventana, "Nombre del producto a eliminar:");
+                boolean a = this.ventana.getSucursal().eliminarProducto(nombre);
+                if(a){
+                    JOptionPane.showMessageDialog(this.ventana, "Producto eliminado exitosamente");
+                }else{
+                    JOptionPane.showMessageDialog(this.ventana, "Error: no se encontró producto con ese nombre");
+                }
+                break;
+            case "Poner producto en promoción":
+                break;
+            case "Inventario":
+                break;
+            case "Caja":
+                break;
+            case "Movimiento del inventario":
+                break;
+            case "Ventas":
+                break;
+            case "Ganancias":
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    @Override
+    public void agregarComponentes() {
+        this.removeAll();
         this.norte = new JPanel (new GridLayout(3,3));
         norte.add(new JLabel("PANADERÍA EL TRIUNFO"));
         norte.add(new JLabel(" "));
         JButton pasarDia = new JButton("PASAR AL DÍA SIGUIENTE");
         pasarDia.addActionListener(this);
         norte.add(pasarDia);
-        norte.add(new JLabel(this.ventana.getSucursal().getDia() + " DE " + this.ventana.getSucursal().getMes().getNombre()));
+        norte.add(new JLabel(this.ventana.getSucursal().getFecha().getDia() + " DE " + this.ventana.getSucursal().getFecha().getMes().getNombre()));
         norte.add(new JLabel(" "));
         norte.add(new JLabel(" "));
         norte.add(new JLabel(" "));
@@ -95,81 +203,5 @@ public class PanelPrincipal extends Panel{
         sur.add(new JLabel("Horario de atención: 6:00AM - 9:00PM"));
         sur.add(new JLabel(" "));
         sur.add(new JLabel(" "));
-    }
-
-    public JPanel getNorte() {
-        return norte;
-    }
-
-    public void setNorte(JPanel norte) {
-        this.norte = norte;
-    }
-
-    public JPanel getIzquierda() {
-        return izquierda;
-    }
-
-    public void setIzquierda(JPanel izquierda) {
-        this.izquierda = izquierda;
-    }
-
-    public JPanel getCentro() {
-        return centro;
-    }
-
-    public void setCentro(JPanel centro) {
-        this.centro = centro;
-    }
-
-    public JPanel getDerecha() {
-        return derecha;
-    }
-
-    public void setDerecha(JPanel derecha) {
-        this.derecha = derecha;
-    }
-
-    public JPanel getSur() {
-        return sur;
-    }
-
-    public void setSur(JPanel sur) {
-        this.sur = sur;
-    }
-
-    @Override
-    public void serAgregado() {
-        this.ventana.add(this.norte, BorderLayout.NORTH);
-        this.ventana.add(this.izquierda, BorderLayout.WEST);
-        this.ventana.add(this.centro, BorderLayout.CENTER);
-        this.ventana.add(this.derecha, BorderLayout.EAST);
-        this.ventana.add(this.sur, BorderLayout.SOUTH);
-        this.ventana.setTitle("Panaderia El Triunfo - Menú prinicpal");
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent evento) {
-        JButton source = (JButton)evento.getSource();
-        String boton = source.getText();
-        System.out.println(boton);
-        if(boton.equals("PASAR AL DÍA SIGUIENTE")){
-            System.out.println(this.ventana.getSucursal().getMes().getNumero());
-            System.out.println(this.ventana.getSucursal().getDia());
-            this.ventana.getSucursal().cambiarDeDia(this.ventana.getSucursal().getMes().getNumero(), this.ventana.getSucursal().getDia());
-            Panel panel = this.ventana.getPanel_actual();
-            this.ventana.removeAll();
-            this.ventana.dispose();
-            this.ventana.add(this);
-            this.ventana.setVisible(true);
-//            this.ventana.agregarPanel(this);
-        }else if(boton.equals("Registrar Compra a proovedor")){
-            Panel panel = this.ventana.getPanel_actual();
-            this.ventana.remove(this.ventana.getPanel_actual());
-            this.ventana.setPanel_actual(this.ventana.getCompra());
-            this.ventana.agregarPanel(this.ventana.getCompra());
-        }else if(boton.equals("ooo")){
-                
-        }
-
     }
 }

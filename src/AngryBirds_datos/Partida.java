@@ -168,7 +168,6 @@ public class Partida {
                         this.getResortera().getPajaro().setX(830);
                         this.getResortera().getPajaro().setY(480);
                         this.getResortera().getPajaro().setArea();
-                        System.out.println(j);
                         this.getResortera().setPajaro(this.pajaros[j-1]);
                         this.getResortera().getEstado().setImagen(this.getResortera().getEstado().getImagen1());
                         this.getResortera().setEstado(this.getResortera().getPosiciones()[0]);
@@ -179,8 +178,6 @@ public class Partida {
                 this.getCerdos()[i].setX(10);
                 this.getCerdos()[i].setY(40);
                 this.getCerdos()[i].setArea();
-                System.out.println(this.getCerdos()[i].getX());
-                System.out.println(this.getCerdos()[i].getY());
                 this.panel.setLanzando(false);
                 tiempo = 0;
             }

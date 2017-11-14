@@ -16,31 +16,25 @@ public class SucursalPanaderia {
     private ArrayList<Producto> productos;
     private ArrayList<Compra> compras;
     private ArrayList<Venta> ventas;
-    private int dia;
-    private Mes mes;
+    private double dinero;
+    private Fecha fecha;
+    private Fecha[] fechas;
 
-    public SucursalPanaderia(int dia, Mes mes) {
+    public SucursalPanaderia( Fecha[] fechas) {
         this.productos = new ArrayList();
         this.compras = new ArrayList();
         this.ventas = new ArrayList();
-        this.dia = dia;
-        this.mes = mes;
+        this.fechas = fechas;
+        this.fecha = this.fechas[0];
+        this.dinero = 0;
     }
 
-    public int getDia() {
-        return dia;
+    public Fecha getFecha() {
+        return fecha;
     }
 
-    public void setDia(int dia) {
-        this.dia = dia;
-    }
-
-    public Mes getMes() {
-        return mes;
-    }
-
-    public void setMes(Mes mes) {
-        this.mes = mes;
+    public void setFecha(Fecha fecha) {
+        this.fecha = fecha;
     }
 
     public ArrayList<Producto> getProductos() {
@@ -65,6 +59,14 @@ public class SucursalPanaderia {
 
     public void setVentas(ArrayList<Venta> ventas) {
         this.ventas = ventas;
+    }
+
+    public double getDinero() {
+        return dinero;
+    }
+
+    public void setDinero(double dinero) {
+        this.dinero = dinero;
     }
     
     
@@ -100,6 +102,9 @@ public class SucursalPanaderia {
     public boolean cambiarPrecio(String nombreproducto, double descuento, int dias){
         boolean a = false;
         for(int i = 0; i < this.productos.size(); i++){
+            if(descuento < 0 || descuento > 100){
+                break;
+            }
             if(this.productos.get(i).getNombre().equals(nombreproducto)){
                 this.productos.get(i).setDias_descuento(dias);
                 this.productos.get(i).setDescuento(descuento);
@@ -113,9 +118,10 @@ public class SucursalPanaderia {
         boolean a = false;
         for(int i = 0; i < this.productos.size(); i++){
             if(this.productos.get(i).getNombre().equals(nombreproducto)){
-                Compra compra = new Compra(this.productos.get(i),cantidad,valor,this.dia, this.mes, proovedor);
+                Compra compra = new Compra(this.productos.get(i),cantidad,valor,this.fecha, proovedor, this);
                 this.compras.add(compra);
                 this.productos.get(i).setCantidad_actual(this.productos.get(i).getCantidad_actual() + cantidad);
+                this.dinero = this.dinero - valor;
                 a = true;
                 break;
             }
@@ -128,9 +134,10 @@ public class SucursalPanaderia {
         for(int i = 0; i < this.productos.size(); i++){
             if(this.productos.get(i).getNombre().equals(nombreproducto)){
                 if(cantidad <= this.productos.get(i).getCantidad_actual()){
-                    VentaPorMayor venta = new VentaPorMayor(this.productos.get(i),cantidad,valor,this.dia,this.mes, cliente);
+                    VentaPorMayor venta = new VentaPorMayor(this.productos.get(i),cantidad,valor,this.fecha, cliente, this);
                     this.ventas.add(venta);
                     this.productos.get(i).setCantidad_actual(this.productos.get(i).getCantidad_actual() - cantidad);
+                    this.dinero = this.dinero + valor;
                     a = true;
                     break;
                 }
@@ -145,9 +152,10 @@ public class SucursalPanaderia {
             if(this.productos.get(i).getNombre().equals(nombreproducto)){
                 if(cantidad <= this.productos.get(i).getCantidad_actual()){
                     double valor = cantidad * this.productos.get(i).getPrecio();
-                    VentaPorMenor venta = new VentaPorMenor(this.productos.get(i),cantidad,valor,this.dia,this.mes);
+                    VentaPorMenor venta = new VentaPorMenor(this.productos.get(i),cantidad,valor,this.fecha, this);
                     this.ventas.add(venta);
                     this.productos.get(i).setCantidad_actual(this.productos.get(i).getCantidad_actual() - cantidad);
+                    this.dinero = this.dinero + valor;
                     a = true;
                     break;
                 }
@@ -155,130 +163,24 @@ public class SucursalPanaderia {
         }
         return a;
     }
-    public void cambiarDeDia(int numero_mes, int dia){
-        Mes enero = new Mes ("enero", 1, 31);
-        Mes febrero = new Mes ("febrero", 2, 28);
-        Mes marzo = new Mes ("marzo", 3, 31);
-        Mes abril = new Mes ("abril", 4, 30);
-        Mes mayo = new Mes ("mayo", 5, 31);
-        Mes junio = new Mes ("junio", 6, 30);
-        Mes julio = new Mes ("julio", 7, 31);
-        Mes agosto = new Mes ("agosto", 8, 31);
-        Mes septiembre = new Mes ("septiembre", 9, 30);
-        Mes octubre = new Mes ("octubre", 10, 31);
-        Mes noviembre = new Mes ("noviembre", 11, 30);
-        Mes diciembre = new Mes ("diciembre", 12, 31);
-        int nuevodia = 0;
-        Mes month =  this.getMes();
-        if (numero_mes == 1){
-            if (dia == 31){
-		nuevodia = 1;
-                month = febrero;
-            }else{
-        	nuevodia = dia + 1;
-            }
-        }else{
-            if(numero_mes == 2){
-		if (dia == 28){
-			nuevodia = 1;
-                    	month = marzo;
-                }else{
-                    nuevodia = dia + 1;
-                }
-            }else{
-		if(numero_mes == 3){
-                    if (dia == 31){
-			nuevodia = 1;
-                    	month = abril;
-                    }else{
-                    	nuevodia = dia + 1;
-                    }
-		}else{
-                    if(numero_mes == 4){
-                        if (dia == 30){
-                            nuevodia = 1;
-                            month = mayo;
-                        }else{
-                            nuevodia = dia + 1;
-                        }
-                    }else{
-                        if(numero_mes == 5){
-                            if (dia == 31){
-                                nuevodia = 1;
-                    		month = junio;
-                            }else{
-                                nuevodia = dia + 1;
-                            }
-			}else{
-                            if(numero_mes == 6){
-				if (dia == 30){
-                                    nuevodia = 1;
-                                    month = julio;
-                		}else{
-                                    nuevodia = dia + 1;
-                		}
-                            }else{
-				if(numero_mes == 7){
-                                    if (dia == 31){
-					nuevodia = 1;
-                    			month = agosto;
-                                    }else{
-                    			nuevodia = dia + 1;
-                                    }
-				}else{
-                                    if(numero_mes == 8){
-					if (dia == 31){
-                                            nuevodia = 1;
-                                            month = septiembre;
-               				}else{
-                                            nuevodia = dia + 1;
-                			}
-                                    }else{
-					if(numero_mes == 9){
-                                            if (dia == 30){
-						nuevodia = 1;
-                    				month = octubre;
-                                            }else{
-                                                nuevodia = dia + 1;
-                                            }
-					}else{
-                                            if(numero_mes == 10){
-						if (dia == 31){
-                                                    nuevodia = 1;
-                                                    month = noviembre;
-                				}else{
-                                                    nuevodia = dia + 1;
-                				}
-                                            }else{
-						if(numero_mes == 11){
-                                                    if (dia == 30){
-							nuevodia = 1;
-                    					month = diciembre;
-                                                    }else{
-                    					nuevodia = dia + 1;
-                                                    }
-						}else{
-                                                    if(numero_mes == 12){
-							if (dia == 31){
-                                                            nuevodia = 1;
-                                                            month = enero;
-                					}else{
-                                                            nuevodia = dia + 1;
-                					}
-                                                    }
-						}
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }       
+    public void cambiarDeDia(){
+        this.fecha.setDinero_final(this.dinero);
+        for(int i = 0;i< this.getProductos().size(); i++){
+            this.fecha.getInv_final().put(this.getProductos().get(i), this.getProductos().get(i).getCantidad_actual());
         }
-        this.setDia(nuevodia);
-        this.setMes(month);
+        for (int i = 0; i<364;i++){
+            if(this.fechas[i].equals(this.fecha)){
+                this.setFecha(this.fechas[i+1]);
+                break;
+            }else if(this.fechas[364].equals(this.fecha)){
+                this.setFecha(this.fechas[0]);
+                break;
+            }
+        }
+        this.fecha.setDinero_inicial(this.dinero);
+        for(int i = 0;i< this.getProductos().size(); i++){
+            this.fecha.getInv_inicial().put(this.getProductos().get(i), this.getProductos().get(i).getCantidad_actual());
+        }
         for(int i = 0; i < this.productos.size(); i++){
             this.productos.get(i).regresarAPrecioNormal();
             this.productos.get(i).setDias_descuento(this.productos.get(i).getDias_descuento() - 1);

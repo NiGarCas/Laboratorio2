@@ -23,31 +23,39 @@ public class PanelInventario extends Panel{
     
     public PanelInventario(VentanaVisualizacion ventana) {
         super(ventana);
-        this.centro = new JPanel(new GridLayout((this.ventana.getSucursal().getProductos().size() + 2),4));
-        centro.add(new JLabel("PRODUCCTO"));
-        centro.add(new JLabel("COSTO"));
-        centro.add(new JLabel("PRECIO"));
-        centro.add(new JLabel("CANTIDAD"));
-        centro.add(new JLabel(" "));
-        centro.add(new JLabel(" "));
-        centro.add(new JLabel(" "));
-        centro.add(new JLabel(" "));
-        for(int i = 0;i< this.ventana.getSucursal().getProductos().size(); i++){
-            centro.add(new JLabel("producto"));
-            centro.add(new JLabel("costo"));
-            centro.add(new JLabel("precio"));
-            centro.add(new JLabel("cantidad"));
-
-        }
+        this.agregarComponentes();
     }
     
     @Override
     public void serAgregado() {
+        this.ventana.add(norte, BorderLayout.NORTH);
         this.ventana.add(centro, BorderLayout.CENTER);
     }
 
     @Override
     public void actionPerformed(ActionEvent evento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//            retornar al principal
+    }
+
+    @Override
+    public void agregarComponentes() {
+        this.norte = new JPanel(new GridLayout((this.ventana.getSucursal().getProductos().size() + 2),3));
+        norte.add(new JLabel("PRODUCTO"));
+        norte.add(new JLabel("PRECIO"));
+        norte.add(new JLabel("CANTIDAD"));
+        norte.add(new JLabel(" "));
+        norte.add(new JLabel(" "));
+        norte.add(new JLabel(" "));
+        for(int i = 0;i< this.ventana.getSucursal().getProductos().size(); i++){
+            norte.add(new JLabel(this.ventana.getSucursal().getProductos().get(i).getNombre()));
+            String precio = Double.toString(this.ventana.getSucursal().getProductos().get(i).getPrecio());
+            norte.add(new JLabel("$" + precio));
+            String cantidad = Integer.toString(this.ventana.getSucursal().getProductos().get(i).getCantidad_actual());
+            norte.add(new JLabel(cantidad));
+        }
+        centro = new JPanel(new GridLayout(1,1));
+        JButton cancelar = new JButton("Volver al menú principal");
+        cancelar.addActionListener(this);
+        centro.add(cancelar);
     }
 }

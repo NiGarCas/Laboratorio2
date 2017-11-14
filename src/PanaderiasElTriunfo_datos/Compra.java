@@ -12,20 +12,20 @@ import java.util.Date;
  * @author nicol
  */
 public class Compra {
+    private SucursalPanaderia sucursal;
     private Producto producto;
     private int cantidad;
     private double valor_total;
-    private Mes mes;
-    private int dia;
+    private Fecha fecha;
     private String proovedor;
 
-    public Compra(Producto producto, int cantidad, double valor_total, int Dia, Mes mes, String proovedor) {
+    public Compra(Producto producto, int cantidad, double valor_total, Fecha fecha, String proovedor, SucursalPanaderia sucursal) {
         this.producto = producto;
         this.cantidad = cantidad;
         this.valor_total = valor_total;
-        this.dia = dia;
-        this.mes = mes;
+        this.fecha = fecha;
         this.proovedor = proovedor;
+        this.sucursal = sucursal;
     }
 
     public Producto getProducto() {
@@ -52,22 +52,14 @@ public class Compra {
         this.valor_total = valor_total;
     }
 
-    public Mes getMes() {
-        return mes;
+    public Fecha getFecha() {
+        return fecha;
     }
 
-    public void setMes(Mes mes) {
-        this.mes = mes;
+    public void setFecha(Fecha fecha) {
+        this.fecha = fecha;
     }
-
-    public int getDia() {
-        return dia;
-    }
-
-    public void setDia(int dia) {
-        this.dia = dia;
-    }
-
+    
     public String getProovedor() {
         return proovedor;
     }
