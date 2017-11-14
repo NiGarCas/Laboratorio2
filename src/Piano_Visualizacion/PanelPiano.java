@@ -21,24 +21,30 @@ import javax.swing.JToggleButton;
  */
 public class PanelPiano extends JPanel implements ActionListener {
     private VentanaVisualizacion x;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
-    private javax.swing.JToggleButton jToggleButton4;
-    private javax.swing.JToggleButton jToggleButton5;
-    private javax.swing.JToggleButton jToggleButton6;
-    private javax.swing.JToggleButton jToggleButton7;
-
+    private JButton jToggleButton1;
+    private JButton  jToggleButton2;
+    private  JButton jToggleButton3;
+    private JButton  jToggleButton4;
+    private JButton  jToggleButton5;
+    private JButton jToggleButton6;
+    private JButton  jToggleButton7;
+     private Melodia melodias;
     public PanelPiano(VentanaVisualizacion x) {
     
-        this.jToggleButton1 =new JToggleButton("DO");
-        
-        this.jToggleButton2 =  new JToggleButton("RE");
-        this.jToggleButton3 =  new JToggleButton("MI");
-        this.jToggleButton4 =  new JToggleButton("FA");
-        this.jToggleButton5 =  new JToggleButton("SOL");
-        this.jToggleButton6 =  new JToggleButton("LA");
-        this.jToggleButton7 =  new JToggleButton("SI");
+        this.jToggleButton1 =new JButton("DO");
+        this.jToggleButton1.addActionListener(this);
+        this.jToggleButton2 =  new JButton("RE");
+         this.jToggleButton2.addActionListener(this);
+        this.jToggleButton3 =  new JButton("MI");
+         this.jToggleButton3.addActionListener(this);
+        this.jToggleButton4 =  new JButton("FA");
+         this.jToggleButton4.addActionListener(this);
+        this.jToggleButton5 =  new JButton("SOL");
+         this.jToggleButton5.addActionListener(this);
+        this.jToggleButton6 =  new JButton("LA");
+         this.jToggleButton6.addActionListener(this);
+        this.jToggleButton7 =  new JButton("SI");
+         this.jToggleButton7.addActionListener(this);
         this.melodias = melodias;
         
         this.setLayout(new GridLayout(1,7));
@@ -51,7 +57,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         this.add(this.jToggleButton7);
         
     }
-     private Melodia melodias;
+
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                               
         InputStream audio;
         
@@ -63,7 +69,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         this.melodias.getAudios().add(n);
         }catch(Exception e){
             
-        JOptionPane.showMessageDialog(null,e);
+        //JOptionPane.showMessageDialog(null,e);
         }
     }                                              
 
@@ -78,7 +84,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         this.melodias.getAudios().add(n);
         }catch(Exception e){
             
-        JOptionPane.showMessageDialog(null,e);
+        
         }
     }                                              
 
@@ -93,7 +99,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         this.melodias.getAudios().add(n);
         }catch(Exception e){
             
-        JOptionPane.showMessageDialog(null,e);
+    
         }
     }                                              
 
@@ -108,7 +114,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         this.melodias.getAudios().add(n);
         }catch(Exception e){
             
-        JOptionPane.showMessageDialog(null,e);
+   
         }
     }                                              
 
@@ -123,7 +129,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         this.melodias.getAudios().add(n);
         }catch(Exception e){
             
-        JOptionPane.showMessageDialog(null,e);
+        
         }
     }                                              
 
@@ -138,13 +144,13 @@ public class PanelPiano extends JPanel implements ActionListener {
         this.melodias.getAudios().add(n);
         }catch(Exception e){
             
-        JOptionPane.showMessageDialog(null,e);
+     
         }
     }                                              
 
     private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                               
          InputStream audio;
-        
+       
         try{
         audio= new FileInputStream(new File("SI.wav"));
         AudioStream music= new AudioStream(audio);
@@ -153,18 +159,32 @@ public class PanelPiano extends JPanel implements ActionListener {
         this.melodias.getAudios().add(n);
         }catch(Exception e){
             
-        JOptionPane.showMessageDialog(null,e);
+        
         }
     }                            
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-    jToggleButton1ActionPerformed(ae);
-jToggleButton2ActionPerformed(ae);
-jToggleButton3ActionPerformed(ae);
-jToggleButton4ActionPerformed(ae);
-jToggleButton5ActionPerformed(ae);
-    jToggleButton6ActionPerformed(ae);
-     jToggleButton7ActionPerformed(ae);
-    }
+   if(ae.getSource()== this.jToggleButton1){
+       jToggleButton1ActionPerformed(ae);
+         } else if(ae.getSource()== this.jToggleButton2){
+    
+             jToggleButton2ActionPerformed(ae);
+    
+    
+           }else if(ae.getSource()== this.jToggleButton3){
+              jToggleButton3ActionPerformed(ae);
+              }else if(ae.getSource()== this.jToggleButton4){
+                    jToggleButton4ActionPerformed(ae);
+        
+                     }else if(ae.getSource()== this.jToggleButton5){
+                         
+                          jToggleButton5ActionPerformed(ae);
+                         }else if(ae.getSource()== this.jToggleButton6){
+                             jToggleButton6ActionPerformed(ae);
+    
+                         } else if(ae.getSource()== this.jToggleButton7){
+                                jToggleButton7ActionPerformed(ae);
+      }
+}
 }

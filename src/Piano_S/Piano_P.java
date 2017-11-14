@@ -5,6 +5,7 @@
  */
 package Piano_S;
 import sun.audio.*;
+import java.util.*;        
 import java.io.*;        
 import javax.swing.JOptionPane;
 /**
@@ -12,12 +13,21 @@ import javax.swing.JOptionPane;
  * @author Juan David Jaime Huerfano
  */
 public class Piano_P extends javax.swing.JFrame {
+ private Melodia melodias;
 
+    public Melodia getMelodias() {
+        return melodias;
+    }
+
+    public void setMelodias(Melodia melodias) {
+        this.melodias = melodias;
+    }
     /**
      * Creates new form Piano_P
      */
     public Piano_P() {
         initComponents();
+        this.melodias= new Melodia();
     }
 
     /**
@@ -155,6 +165,7 @@ public class Piano_P extends javax.swing.JFrame {
         audio= new FileInputStream(new File("DO.wav"));
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
+        this.melodias.getAudios().add(audio);
         }catch(Exception e){
             
         JOptionPane.showMessageDialog(null,e);
@@ -168,6 +179,7 @@ public class Piano_P extends javax.swing.JFrame {
         audio= new FileInputStream(new File("RE.wav"));
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
+        this.melodias.getAudios().add(audio);
         }catch(Exception e){
             
         JOptionPane.showMessageDialog(null,e);
@@ -181,6 +193,7 @@ public class Piano_P extends javax.swing.JFrame {
         audio= new FileInputStream(new File("MI.wav"));
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
+        this.melodias.getAudios().add(audio);
         }catch(Exception e){
             
         JOptionPane.showMessageDialog(null,e);
@@ -194,6 +207,7 @@ public class Piano_P extends javax.swing.JFrame {
         audio= new FileInputStream(new File("FA.wav"));
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
+        this.melodias.getAudios().add(audio);
         }catch(Exception e){
             
         JOptionPane.showMessageDialog(null,e);
@@ -207,6 +221,7 @@ public class Piano_P extends javax.swing.JFrame {
         audio= new FileInputStream(new File("SOL.wav"));
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
+        this.melodias.getAudios().add(audio);
         }catch(Exception e){
             
         JOptionPane.showMessageDialog(null,e);
@@ -220,6 +235,7 @@ public class Piano_P extends javax.swing.JFrame {
         audio= new FileInputStream(new File("LA.wav"));
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
+        this.melodias.getAudios().add(audio);
         }catch(Exception e){
             
         JOptionPane.showMessageDialog(null,e);
@@ -233,6 +249,7 @@ public class Piano_P extends javax.swing.JFrame {
         audio= new FileInputStream(new File("SI.wav"));
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
+        this.melodias.getAudios().add(audio);
         }catch(Exception e){
             
         JOptionPane.showMessageDialog(null,e);
@@ -269,9 +286,22 @@ public class Piano_P extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Piano_P().setVisible(true);
+                Piano_P p= new Piano_P();
+                p.setVisible(true);
+             
+           
+        
+                  
+                
+                
+//                new Piano_P().setVisible(true);
+                
             }
         });
+        
+      
+     
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

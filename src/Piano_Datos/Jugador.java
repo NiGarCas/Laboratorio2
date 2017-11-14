@@ -10,44 +10,51 @@ package Piano_Datos;
  * @author El PcGamer
  */
 public class Jugador {
-     private int ID;
-   private int Vidas;
-   private boolean Turno;
-   private int Score;
-   public Jugador(int Id){
-     this.ID = Id;
-     this.Turno = true;
-     this.Vidas = 3;
-     this.Score = 0;
-   }
+     private String nombre;
+   private int vidas;
    
-   public void setVidas(){
-   this.Vidas--;
-   setTurno();
-   }
+   private boolean turno;
+   private int puntuacion;
+   public Jugador(String nombre) {
+        this.nombre = nombre;
+        this.vidas=3;
+        this.turno=true;
+        this.puntuacion=0;
+    }
    
-   public void setTurno(){
-   if(this.Vidas==0){
-   this.Turno = false;
-   }
-   }
-    public void setScore(int cont){
-    this.Score = cont;
+
+    public String getNombre() {
+        return nombre;
     }
 
-    public int getScore() {
-        return Score;
-    }
-
-    public int getID() {
-        return ID;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getVidas() {
-        return Vidas;
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
     }
 
     public boolean isTurno() {
-        return Turno;
+        return turno;
     }
+
+    public void setTurno(boolean turno) {
+        this.turno = turno;
+        this.vidas--;
+    }
+
+    public int getPuntuacion() {
+        return puntuacion;
+    }
+
+    public void setPuntuacion(int puntuacion) {
+        this.puntuacion = puntuacion;
+    }
+
+    
 }
