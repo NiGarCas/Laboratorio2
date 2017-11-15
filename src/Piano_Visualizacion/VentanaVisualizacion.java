@@ -19,14 +19,20 @@ import java.io.*;
  * @author El PcGamer
  */
 public class VentanaVisualizacion extends JFrame{
-      public VentanaVisualizacion() {
-       add(new PanelPiano(this));
+    private int modo;
+      public VentanaVisualizacion(int modo) {
+        this.modo = modo;
+        add(new PanelPiano(this));
         setSize(750, 500);
         setTitle("Recordando la Secuencia");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         this.setResizable(false);
     }     
+
+    public int getModo() {
+        return modo;
+    }
 
    
 }

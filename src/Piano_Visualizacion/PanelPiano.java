@@ -14,7 +14,6 @@ import java.util.*;
 import java.io.*;        
 import javax.swing.JOptionPane;
 import javax.swing.*;
-import javax.swing.JToggleButton;
 /**
  *
  * @author El PcGamer
@@ -52,7 +51,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         this.si_ =  new JButton("SI");
         this.si_.addActionListener(this);
      
-        this.setLayout(new GridLayout(2,7)); 
+        this.setLayout(new GridLayout(1,7)); 
         
         this.piano.add(this.do_);
         this.piano.add(this.re_);
@@ -61,7 +60,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         this.piano.add(this.sol_);
         this.piano.add(this.la_);
         this.piano.add(this.si_);
-       
+        this.add(piano);
       
     }
     public Juego getJuego() {
