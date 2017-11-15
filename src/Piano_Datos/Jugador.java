@@ -5,22 +5,25 @@
  */
 package Piano_Datos;
 
+import java.util.*;
+
 /**
  *
  * @author El PcGamer
  */
 public class Jugador {
      private String nombre;
-   private int vidas;
-   
-   private boolean turno;
-   private int puntuacion;
+     private int vidas;
+     private boolean turno;
+     private int puntuacion;
+     private Melodia melodia;
    public Jugador(String nombre) {
         this.nombre = nombre;
-        this.vidas=3;
+        this.vidas=5;
         this.turno=true;
         this.puntuacion=0;
-    }
+        this.melodia=new Melodia();
+        }
    
 
     public String getNombre() {
@@ -55,6 +58,6 @@ public class Jugador {
     public void setPuntuacion(int puntuacion) {
         this.puntuacion = puntuacion;
     }
-
+   
     
 }
