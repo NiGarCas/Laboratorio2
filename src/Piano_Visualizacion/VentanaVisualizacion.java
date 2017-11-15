@@ -7,6 +7,10 @@ package Piano_Visualizacion;
 
 import AngryBirds_visualizacion.PanelAngryBirds;
 import javax.swing.JFrame;
+import Piano_Datos.*;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.*;
 import sun.audio.*;
 import java.util.*;        
 import java.io.*;        
@@ -14,13 +18,23 @@ import java.io.*;
  *
  * @author El PcGamer
  */
-public class VentanaVisualizacion extends JFrame {
+public class VentanaVisualizacion extends JFrame{
       public VentanaVisualizacion() {
-        add(new PanelPiano(this));
+       this.setLayout(new GridLayout(2,1));
+     
+       PanelJuego n= new PanelJuego(this);
+       PanelPiano m =n.getPiano();
+       
+        add(n);
+        add(m);
+        
+       
         setSize(938, 509);
-        setTitle("Piano ");
+        setTitle("Piano Game");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         this.setResizable(false);
     }     
+
+   
 }

@@ -20,17 +20,25 @@ import javax.swing.JToggleButton;
  * @author El PcGamer
  */
 public class PanelPiano extends JPanel implements ActionListener {
-    private VentanaVisualizacion x;
-    private JButton jToggleButton1;
-    private JButton  jToggleButton2;
-    private  JButton jToggleButton3;
-    private JButton  jToggleButton4;
-    private JButton  jToggleButton5;
-    private JButton jToggleButton6;
-    private JButton  jToggleButton7;
-     private Melodia melodias;
-    public PanelPiano(VentanaVisualizacion x) {
+ protected Juego juego;
+
+ 
+  
     
+ protected VentanaVisualizacion ventana;
+    protected JButton jToggleButton1;
+   protected JButton  jToggleButton2;
+   protected  JButton jToggleButton3;
+    protected JButton  jToggleButton4;
+    protected JButton  jToggleButton5;
+    protected JButton jToggleButton6;
+    protected JButton  jToggleButton7;
+    
+    
+   
+    
+    public PanelPiano(VentanaVisualizacion ventana) {
+        this.ventana=ventana;
         this.jToggleButton1 =new JButton("DO");
         this.jToggleButton1.addActionListener(this);
         this.jToggleButton2 =  new JButton("RE");
@@ -45,9 +53,9 @@ public class PanelPiano extends JPanel implements ActionListener {
          this.jToggleButton6.addActionListener(this);
         this.jToggleButton7 =  new JButton("SI");
          this.jToggleButton7.addActionListener(this);
-        this.melodias = melodias;
+     
+        this.setLayout(new GridLayout(1,7)); 
         
-        this.setLayout(new GridLayout(1,7));
         this.add(this.jToggleButton1);
         this.add(this.jToggleButton2);
         this.add(this.jToggleButton3);
@@ -55,7 +63,8 @@ public class PanelPiano extends JPanel implements ActionListener {
         this.add(this.jToggleButton5);
         this.add(this.jToggleButton6);
         this.add(this.jToggleButton7);
-        
+       
+      
     }
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                               
@@ -66,7 +75,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
         Nota n= new Nota("DO",audio);
-        this.melodias.getAudios().add(n);
+      
         }catch(Exception e){
             
         //JOptionPane.showMessageDialog(null,e);
@@ -81,7 +90,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
          Nota n= new Nota("RE",audio);
-        this.melodias.getAudios().add(n);
+     
         }catch(Exception e){
             
         
@@ -96,7 +105,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
          Nota n= new Nota("MI",audio);
-        this.melodias.getAudios().add(n);
+       
         }catch(Exception e){
             
     
@@ -111,7 +120,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
         Nota n= new Nota("FA",audio);
-        this.melodias.getAudios().add(n);
+       
         }catch(Exception e){
             
    
@@ -126,7 +135,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
      Nota n= new Nota("SOL",audio);
-        this.melodias.getAudios().add(n);
+        
         }catch(Exception e){
             
         
@@ -141,7 +150,7 @@ public class PanelPiano extends JPanel implements ActionListener {
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
       Nota n= new Nota("LA",audio);
-        this.melodias.getAudios().add(n);
+     
         }catch(Exception e){
             
      
@@ -156,12 +165,14 @@ public class PanelPiano extends JPanel implements ActionListener {
         AudioStream music= new AudioStream(audio);
         AudioPlayer.player.start(music);
         Nota n= new Nota("DO",audio);
-        this.melodias.getAudios().add(n);
+      
         }catch(Exception e){
             
         
         }
-    }                            
+    }      
+    
+     
 
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -185,6 +196,15 @@ public class PanelPiano extends JPanel implements ActionListener {
     
                          } else if(ae.getSource()== this.jToggleButton7){
                                 jToggleButton7ActionPerformed(ae);
+    
       }
 }
+     public Juego getJuego() {
+        return juego;
+    }
+
+    public void setJuego(Juego juego) {
+        this.juego = juego;
+    }
+
 }
