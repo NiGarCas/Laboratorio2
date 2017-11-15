@@ -48,10 +48,6 @@ public class VentanaVisualizacion extends JFrame{
         return sucursal;
     }
 
-    public void setSucursal(SucursalPanaderia sucursal) {
-        this.sucursal = sucursal;
-    }
-
     public JPanel getPanel_actual() {
         return panel_actual;
     }

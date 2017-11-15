@@ -14,6 +14,5 @@ import java.util.Date;
 public class VentaPorMenor extends Venta{
     public VentaPorMenor(Producto producto, int cantidad, double valor_total, Fecha fecha, SucursalPanaderia sucursal) {
         super(producto, cantidad, valor_total, fecha, sucursal);
-        this.tipo = "Por Menor";
     }
 }

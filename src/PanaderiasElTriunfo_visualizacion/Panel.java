@@ -15,15 +15,15 @@ import javax.swing.JTextField;
  */
 public abstract class Panel extends JPanel  implements ActionListener{
     protected VentanaVisualizacion ventana;
-    JPanel norte;
-    JPanel izquierda;
-    JPanel centro;
-    JPanel derecha;
-    JPanel sur;
-    JTextField campo1;
-    JTextField campo2;
-    JTextField campo3;
-    JTextField campo4;
+    protected JPanel norte;
+    protected JPanel izquierda;
+    protected JPanel centro;
+    protected JPanel derecha;
+    protected JPanel sur;
+    protected JTextField campo1;
+    protected JTextField campo2;
+    protected JTextField campo3;
+    protected JTextField campo4;
 
     public Panel(VentanaVisualizacion ventana) {
         this.ventana = ventana;

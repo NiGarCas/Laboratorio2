@@ -18,7 +18,6 @@ public class VentaPorMayor extends Venta{
     public VentaPorMayor(Producto producto, int cantidad, double valor_total, Fecha fecha, String cliente,SucursalPanaderia sucursal) {
         super(producto, cantidad, valor_total, fecha, sucursal);
         this.cliente = cliente;
-        this.tipo = "Por Mayor";
     }
     
 }

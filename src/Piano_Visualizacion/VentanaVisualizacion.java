@@ -20,17 +20,9 @@ import java.io.*;
  */
 public class VentanaVisualizacion extends JFrame{
       public VentanaVisualizacion() {
-       this.setLayout(new GridLayout(2,1));
-     
-       PanelJuego n= new PanelJuego(this);
-       PanelPiano m =n.getPiano();
-       
-        add(n);
-        add(m);
-        
-       
-        setSize(938, 509);
-        setTitle("Piano Game");
+       add(new PanelPiano(this));
+        setSize(750, 500);
+        setTitle("Recordando la Secuencia");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         this.setResizable(false);

@@ -20,191 +20,146 @@ import javax.swing.JToggleButton;
  * @author El PcGamer
  */
 public class PanelPiano extends JPanel implements ActionListener {
- protected Juego juego;
-
- 
-  
-    
- protected VentanaVisualizacion ventana;
-    protected JButton jToggleButton1;
-   protected JButton  jToggleButton2;
-   protected  JButton jToggleButton3;
-    protected JButton  jToggleButton4;
-    protected JButton  jToggleButton5;
-    protected JButton jToggleButton6;
-    protected JButton  jToggleButton7;
-    
-    
-   
+    private Juego juego;
+    private VentanaVisualizacion ventana;
+    private boolean jugando;
+    private JPanel pjuego;
+    private JPanel piano;
+    private JButton do_;
+    private JButton re_;
+    private JButton mi_;
+    private JButton fa_;
+    private JButton sol_;
+    private JButton la_;
+    private JButton si_;
     
     public PanelPiano(VentanaVisualizacion ventana) {
         this.ventana=ventana;
-        this.jToggleButton1 =new JButton("DO");
-        this.jToggleButton1.addActionListener(this);
-        this.jToggleButton2 =  new JButton("RE");
-         this.jToggleButton2.addActionListener(this);
-        this.jToggleButton3 =  new JButton("MI");
-         this.jToggleButton3.addActionListener(this);
-        this.jToggleButton4 =  new JButton("FA");
-         this.jToggleButton4.addActionListener(this);
-        this.jToggleButton5 =  new JButton("SOL");
-         this.jToggleButton5.addActionListener(this);
-        this.jToggleButton6 =  new JButton("LA");
-         this.jToggleButton6.addActionListener(this);
-        this.jToggleButton7 =  new JButton("SI");
-         this.jToggleButton7.addActionListener(this);
+        this.piano = new JPanel();
+        this.pjuego = new JPanel();
+        this.do_ = new JButton("DO");
+        this.do_.addActionListener(this);
+        this.re_ =  new JButton("RE");
+        this.re_.addActionListener(this);
+        this.mi_ =  new JButton("MI");
+        this.mi_.addActionListener(this);
+        this.fa_ =  new JButton("FA");
+        this.fa_.addActionListener(this);
+        this.sol_ =  new JButton("SOL");
+        this.sol_.addActionListener(this);
+        this.la_ =  new JButton("LA");
+        this.la_.addActionListener(this);
+        this.si_ =  new JButton("SI");
+        this.si_.addActionListener(this);
      
-        this.setLayout(new GridLayout(1,7)); 
+        this.setLayout(new GridLayout(2,7)); 
         
-        this.add(this.jToggleButton1);
-        this.add(this.jToggleButton2);
-        this.add(this.jToggleButton3);
-        this.add(this.jToggleButton4);
-        this.add(this.jToggleButton5);
-        this.add(this.jToggleButton6);
-        this.add(this.jToggleButton7);
+        this.piano.add(this.do_);
+        this.piano.add(this.re_);
+        this.piano.add(this.mi_);
+        this.piano.add(this.fa_);
+        this.piano.add(this.sol_);
+        this.piano.add(this.la_);
+        this.piano.add(this.si_);
        
       
     }
-
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        InputStream audio;
-        
-        try{
-        audio= new FileInputStream(new File("DO.wav"));
-        AudioStream music= new AudioStream(audio);
-        AudioPlayer.player.start(music);
-        Nota n= new Nota("DO",audio);
-      
-        }catch(Exception e){
-            
-        //JOptionPane.showMessageDialog(null,e);
-        }
-    }                                              
-
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                               
-          InputStream audio;
-        
-        try{
-        audio= new FileInputStream(new File("RE.wav"));
-        AudioStream music= new AudioStream(audio);
-        AudioPlayer.player.start(music);
-         Nota n= new Nota("RE",audio);
-     
-        }catch(Exception e){
-            
-        
-        }
-    }                                              
-
-    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                               
-         InputStream audio;
-        
-        try{
-        audio= new FileInputStream(new File("MI.wav"));
-        AudioStream music= new AudioStream(audio);
-        AudioPlayer.player.start(music);
-         Nota n= new Nota("MI",audio);
-       
-        }catch(Exception e){
-            
-    
-        }
-    }                                              
-
-    private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                               
-          InputStream audio;
-        
-        try{
-        audio= new FileInputStream(new File("FA.wav"));
-        AudioStream music= new AudioStream(audio);
-        AudioPlayer.player.start(music);
-        Nota n= new Nota("FA",audio);
-       
-        }catch(Exception e){
-            
-   
-        }
-    }                                              
-
-    private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                               
-       InputStream audio;
-        
-        try{
-        audio= new FileInputStream(new File("SOL.wav"));
-        AudioStream music= new AudioStream(audio);
-        AudioPlayer.player.start(music);
-     Nota n= new Nota("SOL",audio);
-        
-        }catch(Exception e){
-            
-        
-        }
-    }                                              
-
-    private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {                                               
-          InputStream audio;
-        
-        try{
-        audio= new FileInputStream(new File("LA.wav"));
-        AudioStream music= new AudioStream(audio);
-        AudioPlayer.player.start(music);
-      Nota n= new Nota("LA",audio);
-     
-        }catch(Exception e){
-            
-     
-        }
-    }                                              
-
-    private void jToggleButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                               
-         InputStream audio;
-       
-        try{
-        audio= new FileInputStream(new File("SI.wav"));
-        AudioStream music= new AudioStream(audio);
-        AudioPlayer.player.start(music);
-        Nota n= new Nota("DO",audio);
-      
-        }catch(Exception e){
-            
-        
-        }
-    }      
-    
-     
-
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-   if(ae.getSource()== this.jToggleButton1){
-       jToggleButton1ActionPerformed(ae);
-         } else if(ae.getSource()== this.jToggleButton2){
-    
-             jToggleButton2ActionPerformed(ae);
-    
-    
-           }else if(ae.getSource()== this.jToggleButton3){
-              jToggleButton3ActionPerformed(ae);
-              }else if(ae.getSource()== this.jToggleButton4){
-                    jToggleButton4ActionPerformed(ae);
-        
-                     }else if(ae.getSource()== this.jToggleButton5){
-                         
-                          jToggleButton5ActionPerformed(ae);
-                         }else if(ae.getSource()== this.jToggleButton6){
-                             jToggleButton6ActionPerformed(ae);
-    
-                         } else if(ae.getSource()== this.jToggleButton7){
-                                jToggleButton7ActionPerformed(ae);
-    
-      }
-}
-     public Juego getJuego() {
+    public Juego getJuego() {
         return juego;
     }
 
     public void setJuego(Juego juego) {
         this.juego = juego;
     }
+    private void doActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        try{
+            InputStream audio= new FileInputStream(new File("do2.wav"));
+            AudioStream music= new AudioStream(audio);
+            AudioPlayer.player.start(music);
+            Nota n= new Nota("DO",audio);
+        }catch(Exception e){
+            }
+    }                                              
 
-}
+    private void reActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        try{
+            InputStream audio= new FileInputStream(new File("re2.wav"));
+            AudioStream music= new AudioStream(audio);
+            AudioPlayer.player.start(music);
+            Nota n= new Nota("RE",audio);
+        }catch(Exception e){
+            }
+    }                                              
+
+    private void miActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        try{
+            InputStream audio= new FileInputStream(new File("mi2.wav"));
+            AudioStream music= new AudioStream(audio);
+            AudioPlayer.player.start(music);
+            Nota n= new Nota("MI",audio);
+        }catch(Exception e){
+            }
+    }                                              
+
+    private void faActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        try{
+            InputStream audio= new FileInputStream(new File("fa2.wav"));
+            AudioStream music= new AudioStream(audio);
+            AudioPlayer.player.start(music);
+            Nota n= new Nota("FA",audio);
+        }catch(Exception e){
+            }
+    }                                              
+
+    private void solActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        try{
+            InputStream audio= new FileInputStream(new File("sol2.wav"));
+            AudioStream music= new AudioStream(audio);
+            AudioPlayer.player.start(music);
+            Nota n= new Nota("SOL",audio);
+        }catch(Exception e){
+            }
+    }                                              
+
+    private void laActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        try{
+            InputStream audio= new FileInputStream(new File("la2.wav"));
+            AudioStream music= new AudioStream(audio);
+            AudioPlayer.player.start(music);
+            Nota n= new Nota("LA",audio);
+        }catch(Exception e){
+            }    
+    }                                              
+
+    private void siActionPerformed(java.awt.event.ActionEvent evt) {                                               
+         try{
+            InputStream audio= new FileInputStream(new File("si2.wav"));
+            AudioStream music= new AudioStream(audio);
+            AudioPlayer.player.start(music);
+            Nota n= new Nota("SI",audio);
+        }catch(Exception e){
+            }
+    }
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        if(ae.getSource()== this.do_){
+            doActionPerformed(ae);
+        }else if(ae.getSource()== this.re_){
+            reActionPerformed(ae);
+        }else if(ae.getSource()== this.mi_){
+            miActionPerformed(ae);
+        }else if(ae.getSource()== this.fa_){
+            faActionPerformed(ae);
+        }else if(ae.getSource()== this.sol_){
+            solActionPerformed(ae);
+        }else if(ae.getSource()== this.la_){
+            laActionPerformed(ae);
+        } else if(ae.getSource()== this.si_){
+            siActionPerformed(ae);
+        }
+    }
+}      
+    
+
+     
+

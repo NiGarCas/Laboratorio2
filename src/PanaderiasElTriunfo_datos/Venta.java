@@ -18,7 +18,6 @@ public abstract class Venta {
     protected int cantidad;
     protected double valor_total;
     private Fecha fecha;
-    protected String tipo;
 
     public Venta(Producto producto, int cantidad, double valor_total, Fecha fecha, SucursalPanaderia sucursal) {
         this.producto = producto;
@@ -59,15 +58,4 @@ public abstract class Venta {
     public void setFecha(Fecha fecha) {
         this.fecha = fecha;
     }
-
-    
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-    
-    
 }

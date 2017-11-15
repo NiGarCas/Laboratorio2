@@ -13,23 +13,15 @@ import java.io.*;
  * @author El PcGamer
  */
 public class Melodia {
-    private ArrayList<Nota> audios;
-
-    public ArrayList<Nota> getAudios() {
-        return audios;
-    }
-
-    public void setAudios(ArrayList<Nota> audios) {
-        this.audios = audios;
-    }
+    private ArrayList<Nota> notas;
+    private String nombre;
 
     public Melodia() {
-        this.audios= new ArrayList<>();
+        this.notas = new ArrayList<>();
     }
     public void addNota(String nombre,InputStream audio){
         Nota n= new Nota(nombre,audio);
-        this.audios.add(n);
-        
+        this.notas.add(n);
     }
 
    

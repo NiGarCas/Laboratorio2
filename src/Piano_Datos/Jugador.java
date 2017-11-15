@@ -13,16 +13,12 @@ import java.util.*;
  */
 public class Jugador {
      private String nombre;
-     private int vidas;
      private boolean turno;
-     private int puntuacion;
-     private Melodia melodia;
+     private boolean ganador;
+     
    public Jugador(String nombre) {
         this.nombre = nombre;
-        this.vidas=5;
-        this.turno=true;
-        this.puntuacion=0;
-        this.melodia=new Melodia();
+        this.ganador = false;
         }
    
 
@@ -33,31 +29,5 @@ public class Jugador {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public int getVidas() {
-        return vidas;
-    }
-
-    public void setVidas(int vidas) {
-        this.vidas = vidas;
-    }
-
-    public boolean isTurno() {
-        return turno;
-    }
-
-    public void setTurno(boolean turno) {
-        this.turno = turno;
-        this.vidas--;
-    }
-
-    public int getPuntuacion() {
-        return puntuacion;
-    }
-
-    public void setPuntuacion(int puntuacion) {
-        this.puntuacion = puntuacion;
-    }
    
-    
 }

@@ -68,8 +68,7 @@ public class SucursalPanaderia {
     public void setDinero(double dinero) {
         this.dinero = dinero;
     }
-    
-    
+
     public boolean agregarProducto(String nombre, double precio){
         boolean a = false;
         boolean b = true;

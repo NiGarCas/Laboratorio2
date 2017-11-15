@@ -18,7 +18,5 @@ public class LogicaPiano {
      public static void main(String[] args){
         VentanaVisualizacion ventana = new VentanaVisualizacion();
         ventana.setVisible(true);
-     
      }
-     
 }
