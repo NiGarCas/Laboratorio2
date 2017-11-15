@@ -114,6 +114,7 @@ public class SucursalPanaderia {
         }
         return a;
     }
+    
     public boolean registrarCompra(String nombreproducto, int cantidad, double valor, String proovedor){
         boolean a = false;
         for(int i = 0; i < this.productos.size(); i++){
@@ -122,6 +123,7 @@ public class SucursalPanaderia {
                 this.compras.add(compra);
                 this.productos.get(i).setCantidad_actual(this.productos.get(i).getCantidad_actual() + cantidad);
                 this.dinero = this.dinero - valor;
+                this.fecha.getCompras().add(compra);
                 a = true;
                 break;
             }
@@ -138,6 +140,7 @@ public class SucursalPanaderia {
                     this.ventas.add(venta);
                     this.productos.get(i).setCantidad_actual(this.productos.get(i).getCantidad_actual() - cantidad);
                     this.dinero = this.dinero + valor;
+                    this.fecha.getVentas().add(venta);
                     a = true;
                     break;
                 }
@@ -156,6 +159,7 @@ public class SucursalPanaderia {
                     this.ventas.add(venta);
                     this.productos.get(i).setCantidad_actual(this.productos.get(i).getCantidad_actual() - cantidad);
                     this.dinero = this.dinero + valor;
+                    this.fecha.getVentas().add(venta);
                     a = true;
                     break;
                 }
@@ -163,6 +167,7 @@ public class SucursalPanaderia {
         }
         return a;
     }
+    
     public void cambiarDeDia(){
         this.fecha.setDinero_final(this.dinero);
         for(int i = 0;i< this.getProductos().size(); i++){
@@ -186,5 +191,19 @@ public class SucursalPanaderia {
             this.productos.get(i).setDias_descuento(this.productos.get(i).getDias_descuento() - 1);
             this.productos.get(i).aplicarDescuento();
         }   
+    }
+    
+    public Fecha existeFecha(int dia, int mes){
+        boolean a = false;
+        Fecha fecha = null;
+        for(int i = 0; i < 365; i++){
+            if (dia == this.fechas[i].getDia()){
+                if (mes == this.fechas[i].getMes().getNumero()){
+                    fecha = this.fechas[i];
+                    break;
+                }
+            }
+        }
+        return fecha;
     }
 }

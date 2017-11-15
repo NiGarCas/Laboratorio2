@@ -21,22 +21,10 @@ import javax.swing.JTextField;
  * @author nicol
  */
 public class PanelCompra extends Panel{
-    JPanel centro;
-    JPanel sur;
-    JTextField campo1;
-    JTextField campo2;
-    JTextField campo3;
-    JTextField campo4;
 
     public PanelCompra(VentanaVisualizacion ventana) {
         super(ventana);
         this.agregarComponentes();
-    }
-
-    @Override
-    public void serAgregado() {
-        this.ventana.add(centro, BorderLayout.CENTER);
-        this.ventana.add(sur, BorderLayout.SOUTH);
     }
 
     @Override
@@ -58,7 +46,7 @@ public class PanelCompra extends Panel{
             }
             
         }else{
-//            retornar al principal
+            this.ventana.actualizarPanel(this.ventana.getPaneles()[0]);
         }
     }
 
@@ -86,8 +74,13 @@ public class PanelCompra extends Panel{
         JButton registrar = new JButton("Registrar compra");
         registrar.addActionListener(this);
         sur.add(registrar);
-        JButton cancelar = new JButton("Cancelar (Volver al menú principal)");
+        JButton cancelar = new JButton("Volver al menú principal");
         cancelar.addActionListener(this);
         sur.add(cancelar);
+        
+        this.setLayout(new BorderLayout());
+        this.add(centro, BorderLayout.CENTER);
+        this.add(sur, BorderLayout.SOUTH);
+        
     }
 }

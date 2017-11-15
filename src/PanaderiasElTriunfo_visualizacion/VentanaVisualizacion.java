@@ -17,47 +17,31 @@ import javax.swing.*;
  */
 public class VentanaVisualizacion extends JFrame{
     private SucursalPanaderia sucursal;
-    private PanelPrincipal principal;
-    private PanelAgregarProducto agregar;
-    private PanelPromocion promocion;
-    private PanelCompra compra;
-    private PanelPorMayor pormayor;
-    private PanelPorMenor pormenor;
-    private PanelInventario inventario;
-    private PanelCaja caja;
-    private PanelMovimientoInventario movinventario;
-    private PanelReporteVentas ventas;
-    private PanelReportePyG pyg;
-    private Panel panel_actual;
+    private Panel[]paneles;
+    private JPanel panel_actual;
 
     public VentanaVisualizacion(SucursalPanaderia sucursal) {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocation(400,250);
-        this.setSize(600, 400);
+        this.setSize(750, 400);
         this.setTitle("Panaderias El Triunfo");
         this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
         this.sucursal = sucursal;
-        this.principal = new PanelPrincipal(this);
-        this.agregar =new PanelAgregarProducto(this);
-        this.promocion = new PanelPromocion(this);
-        this.compra = new PanelCompra(this);
-        this.pormayor = new PanelPorMayor(this);
-        this.pormenor = new PanelPorMenor(this);
-        this.inventario = new PanelInventario(this);
-        this.caja = new PanelCaja(this);
-        this.movinventario = new PanelMovimientoInventario(this);
-        this.ventas = new PanelReporteVentas(this);
-        this.pyg = new PanelReportePyG(this);
-        this.panel_actual = this.principal;
-    }
-    
-    public void agregarPanel(Panel panel){
-        this.panel_actual = panel;
-        this.add(panel);
-        panel_actual.serAgregado();
+        this.paneles = new Panel[10];
+        this.paneles[0] = new PanelPrincipal(this);
+        this.paneles[1] =new PanelAgregarProducto(this);
+        this.paneles[2] = new PanelPromocion(this);
+        this.paneles[3] = new PanelCompra(this);
+        this.paneles[4] = new PanelPorMayor(this);
+        this.paneles[5] = new PanelPorMenor(this);
+        this.paneles[6] = new PanelInventario(this);
+        this.paneles[7] = new PanelCaja(this);
+        this.paneles[8] = new PanelReporteVentas(this);
+        this.paneles[9] = new PanelReportePyG(this);
+        this.panel_actual = new JPanel();
+        this.actualizarPanel(this.paneles[0]);
         this.setVisible(true);
-    
     }
 
     public SucursalPanaderia getSucursal() {
@@ -68,100 +52,23 @@ public class VentanaVisualizacion extends JFrame{
         this.sucursal = sucursal;
     }
 
-    public Panel getPanel_actual() {
+    public JPanel getPanel_actual() {
         return panel_actual;
     }
 
-    public void setPanel_actual(Panel panel) {
+    public void setPanel_actual(JPanel panel) {
         this.panel_actual = panel;
     }
 
-    public PanelPrincipal getPrincipal() {
-        return principal;
-    }
-
-    public void setPrincipal(PanelPrincipal principal) {
-        this.principal = principal;
-    }
-
-    public PanelAgregarProducto getAgregar() {
-        return agregar;
-    }
-
-    public void setAgregar(PanelAgregarProducto agregar) {
-        this.agregar = agregar;
-    }
-
-    public PanelPromocion getPromocion() {
-        return promocion;
-    }
-
-    public void setPromocion(PanelPromocion promocion) {
-        this.promocion = promocion;
-    }
-
-    public PanelCompra getCompra() {
-        return compra;
-    }
-
-    public void setCompra(PanelCompra compra) {
-        this.compra = compra;
-    }
-
-    public PanelPorMayor getPormayor() {
-        return pormayor;
-    }
-
-    public void setPormayor(PanelPorMayor pormayor) {
-        this.pormayor = pormayor;
-    }
-
-    public PanelPorMenor getPormenor() {
-        return pormenor;
-    }
-
-    public void setPormenor(PanelPorMenor pormenor) {
-        this.pormenor = pormenor;
-    }
-
-    public PanelInventario getInventario() {
-        return inventario;
-    }
-
-    public void setInventario(PanelInventario inventario) {
-        this.inventario = inventario;
-    }
-
-    public PanelCaja getCaja() {
-        return caja;
-    }
-
-    public void setCaja(PanelCaja caja) {
-        this.caja = caja;
-    }
-
-    public PanelMovimientoInventario getMovinventario() {
-        return movinventario;
-    }
-
-    public void setMovinventario(PanelMovimientoInventario movinventario) {
-        this.movinventario = movinventario;
-    }
-
-    public PanelReporteVentas getVentas() {
-        return ventas;
-    }
-
-    public void setVentas(PanelReporteVentas ventas) {
-        this.ventas = ventas;
-    }
-
-    public PanelReportePyG getPyg() {
-        return pyg;
-    }
-
-    public void setPyg(PanelReportePyG pyg) {
-        this.pyg = pyg;
+    public Panel[] getPaneles() {
+        return paneles;
     }
     
+    public void actualizarPanel(Panel panel){
+        
+        this.getPanel_actual().removeAll();
+        this.getPanel_actual().add(panel);
+        this.getPanel_actual().updateUI();
+        this.getPanel_actual().repaint();
+    }
 }

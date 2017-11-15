@@ -51,6 +51,7 @@ public class LogicaPanaderias {
         }
         SucursalPanaderia eltriunfo = new SucursalPanaderia(fechas);
         VentanaVisualizacion ventana = new VentanaVisualizacion(eltriunfo);
-        ventana.agregarPanel(ventana.getPrincipal());
+        ventana.add(ventana.getPanel_actual());
+        
     }  
 }

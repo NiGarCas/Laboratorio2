@@ -25,7 +25,7 @@ public class PanelAngryBirds extends JPanel implements ActionListener{
 
     private Timer timer ;
     private Partida partida;
-    private boolean lanzando = false;
+    private boolean lanzando;
     private double tiempo;
     private VentanaVisualizacion ventana;
     

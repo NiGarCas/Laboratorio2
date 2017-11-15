@@ -5,6 +5,8 @@
  */
 package PanaderiasElTriunfo_visualizacion;
 
+import PanaderiasElTriunfo_datos.Fecha;
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import static java.lang.Float.parseFloat;
@@ -20,23 +22,15 @@ import javax.swing.JTextField;
  * @author nicol
  */
 public class PanelReporteVentas extends Panel{
-    
-    JPanel norte;
-    JPanel centro;
-    JPanel sur;
-    JTextField campo1;
-    JTextField campo2;
+
+    Fecha fecha;
     
     public PanelReporteVentas(VentanaVisualizacion ventana) {
         super(ventana);
+        fecha = this.ventana.getSucursal().getFecha();
         this.agregarComponentes();
     }
     
-    @Override
-    public void serAgregado() {
-        
-    }
-
     @Override
     public void actionPerformed(ActionEvent evento) {
         JButton source = (JButton)evento.getSource();
@@ -46,9 +40,22 @@ public class PanelReporteVentas extends Panel{
             int mes = parseInt(p);
             String p2 = this.campo2.getText();
             int dia = parseInt(p2);
-            
+            fecha = this.ventana.getSucursal().existeFecha(dia,mes);
+            if(fecha != null){
+                if(this.fecha.getVentas().size() == 0){
+                    JOptionPane.showMessageDialog(this.ventana, "En el dia escogido no hubo ventas");
+                }else{
+                    this.removeAll();
+                    this.agregarComponentes();
+                    this.add(sur, BorderLayout.SOUTH);
+                    this.ventana.actualizarPanel(this.ventana.getPaneles()[8]);
+                }
+            }else{
+                JOptionPane.showMessageDialog(this.ventana, "Fecha incorrecta. Corrija los valores e intente nuevamente");
+            }
         }else{
-//            retornar al principal
+            this.remove(sur);
+            this.ventana.actualizarPanel(this.ventana.getPaneles()[0]);
         }
     }
 
@@ -68,11 +75,28 @@ public class PanelReporteVentas extends Panel{
         JButton registrar = new JButton("Generar reporte");
         registrar.addActionListener(this);
         centro.add(registrar);
-        JButton cancelar = new JButton("Cancelar (Volver al menú principal)");
+        JButton cancelar = new JButton("Volver al menú principal");
         cancelar.addActionListener(this);
         centro.add(cancelar);
+        System.out.println(this.fecha.getDia());
+        this.sur = new JPanel(new GridLayout(this.fecha.getVentas().size() + 2 ,3));
+        sur.add(new JLabel("PRODUCTO"));
+        sur.add(new JLabel("CANTIDAD"));
+        sur.add(new JLabel("VALOR TOTAL"));
+        sur.add(new JLabel(" "));
+        sur.add(new JLabel(" "));
+        sur.add(new JLabel(" "));
+        for(int i = 0;i < this.fecha.getVentas().size(); i++){
+            sur.add(new JLabel(this.fecha.getVentas().get(i).getProducto().getNombre()));
+            String cantidad = Integer.toString(this.fecha.getVentas().get(i).getCantidad());
+            sur.add(new JLabel( cantidad));
+            String  valor = Double.toString(this.fecha.getVentas().get(i).getValor_total());
+            sur.add(new JLabel("$" +valor));
+        }
         
-//        reporte en panel sur
+        this.setLayout(new BorderLayout());
+        this.add(norte, BorderLayout.NORTH);
+        this.add(centro, BorderLayout.CENTER);
     }
     
 }

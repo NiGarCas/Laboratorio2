@@ -18,69 +18,13 @@ import javax.swing.*;
  * @author nicol
  */
 public class PanelPrincipal extends Panel{
-    JPanel norte;
-    JPanel izquierda;
-    JPanel centro;
-    JPanel derecha;
-    JPanel sur;
-    
     
     public PanelPrincipal(VentanaVisualizacion ventana) {
         super(ventana);
         this.agregarComponentes();
     }
 
-    public JPanel getNorte() {
-        return norte;
-    }
-
-    public void setNorte(JPanel norte) {
-        this.norte = norte;
-    }
-
-    public JPanel getIzquierda() {
-        return izquierda;
-    }
-
-    public void setIzquierda(JPanel izquierda) {
-        this.izquierda = izquierda;
-    }
-
-    public JPanel getCentro() {
-        return centro;
-    }
-
-    public void setCentro(JPanel centro) {
-        this.centro = centro;
-    }
-
-    public JPanel getDerecha() {
-        return derecha;
-    }
-
-    public void setDerecha(JPanel derecha) {
-        this.derecha = derecha;
-    }
-
-    public JPanel getSur() {
-        return sur;
-    }
-
-    public void setSur(JPanel sur) {
-        this.sur = sur;
-    }
-
-    @Override
-    public void serAgregado() {
-        this.ventana.setLayout(new BorderLayout());
-        this.ventana.add(this.norte, BorderLayout.NORTH);
-        this.ventana.add(this.izquierda, BorderLayout.WEST);
-        this.ventana.add(this.centro, BorderLayout.CENTER);
-        this.ventana.add(this.derecha, BorderLayout.EAST);
-        this.ventana.add(this.sur, BorderLayout.SOUTH);
-        this.ventana.setTitle("Panaderia El Triunfo - Menú prinicpal");
-        this.ventana.pack();
-    }
+ 
 
     @Override
     public void actionPerformed(ActionEvent evento) {
@@ -89,21 +33,21 @@ public class PanelPrincipal extends Panel{
         switch (boton) {
             case "PASAR AL DÍA SIGUIENTE":
                 this.ventana.getSucursal().cambiarDeDia();
-//                System.out.println(this.ventana.getSucursal().getFecha().getMes().getNumero());
-//                System.out.println(this.ventana.getSucursal().getDia());
                 this.removeAll();
                 this.agregarComponentes();
-                this.updateUI();
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[0]);
                 break;
             case "Registrar Compra a proovedor":
-                this.ventana.setPanel_actual(this.ventana.getCompra());
-                this.ventana.getPanel_actual().updateUI();
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[3]);
                 break;
             case "Registrar Venta al por mayor":
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[4]);
                 break;
             case "Registrar Venta al por menor":
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[5]);
                 break;
-            case "Agregar producto":
+            case "Agregar producto al sistema":
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[1]);
                 break;
             case "Eliminar producto":
                 String nombre = JOptionPane.showInputDialog(this.ventana, "Nombre del producto a eliminar:");
@@ -115,21 +59,23 @@ public class PanelPrincipal extends Panel{
                 }
                 break;
             case "Poner producto en promoción":
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[2]);
                 break;
             case "Inventario":
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[6]);
                 break;
             case "Caja":
-                break;
-            case "Movimiento del inventario":
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[7]);
                 break;
             case "Ventas":
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[8]);
                 break;
             case "Ganancias":
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[9]);
                 break;
             default:
                 break;
         }
-
     }
 
     @Override
@@ -168,9 +114,6 @@ public class PanelPrincipal extends Panel{
         JButton caja = new JButton ("Caja");
         caja.addActionListener(this);
         centro.add(caja);
-        JButton movInventario = new JButton ("Movimiento del inventario");
-        movInventario.addActionListener(this);
-        centro.add(movInventario);
         JButton ventas = new JButton ("Ventas");
         ventas.addActionListener(this);
         centro.add(ventas);
@@ -180,7 +123,7 @@ public class PanelPrincipal extends Panel{
         
         this.derecha = new JPanel(new GridLayout(7,1));
         derecha.add(new JLabel("                      PRODUCTOS"));
-        JButton agregar = new JButton("Agregar producto");
+        JButton agregar = new JButton("Agregar producto al sistema");
         agregar.addActionListener(this);
         derecha.add(agregar);
         JButton eliminar = new JButton("Eliminar producto");
@@ -203,5 +146,13 @@ public class PanelPrincipal extends Panel{
         sur.add(new JLabel("Horario de atención: 6:00AM - 9:00PM"));
         sur.add(new JLabel(" "));
         sur.add(new JLabel(" "));
+        
+        this.setLayout(new BorderLayout());
+        this.add(this.norte, BorderLayout.NORTH);
+        this.add(this.izquierda, BorderLayout.WEST);
+        this.add(this.centro, BorderLayout.CENTER);
+        this.add(this.derecha, BorderLayout.EAST);
+        this.add(this.sur, BorderLayout.SOUTH);
+//        this.ventana.pack();
     }
 }

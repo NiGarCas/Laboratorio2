@@ -8,8 +8,10 @@ package PanaderiasElTriunfo_visualizacion;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import static java.lang.Integer.parseInt;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -18,23 +20,9 @@ import javax.swing.JPanel;
  */
 public class PanelInventario extends Panel{
     
-    private JPanel norte;
-    private JPanel centro;
-    
     public PanelInventario(VentanaVisualizacion ventana) {
         super(ventana);
         this.agregarComponentes();
-    }
-    
-    @Override
-    public void serAgregado() {
-        this.ventana.add(norte, BorderLayout.NORTH);
-        this.ventana.add(centro, BorderLayout.CENTER);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent evento) {
-//            retornar al principal
     }
 
     @Override
@@ -53,9 +41,31 @@ public class PanelInventario extends Panel{
             String cantidad = Integer.toString(this.ventana.getSucursal().getProductos().get(i).getCantidad_actual());
             norte.add(new JLabel(cantidad));
         }
-        centro = new JPanel(new GridLayout(1,1));
+        this.centro = new JPanel(new GridLayout(1,2));
+        JButton registrar = new JButton("Generar reporte");
+        registrar.addActionListener(this);
+        centro.add(registrar);
         JButton cancelar = new JButton("Volver al menú principal");
         cancelar.addActionListener(this);
         centro.add(cancelar);
+        
+        this.setLayout(new BorderLayout());
+        
+        this.add(centro, BorderLayout.CENTER);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        JButton source = (JButton)ae.getSource();
+        String boton = source.getText();
+        if(boton.equals("Generar reporte")){
+            this.removeAll();
+            this.agregarComponentes();
+            this.add(norte, BorderLayout.NORTH);
+            this.ventana.actualizarPanel(this.ventana.getPaneles()[6]);
+        }else{
+            this.remove(norte);
+            this.ventana.actualizarPanel(this.ventana.getPaneles()[0]);
+        }
     }
 }
