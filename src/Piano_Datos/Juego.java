@@ -21,9 +21,23 @@ public class Juego {
     private JuegoAdivinar jadivinar;
     private JuegoPiano jsecuencia;
     private VentanaVisualizacion ventana;
+    private Nota do_;
+    private Nota re_;
+    private Nota mi_;
+    private Nota fa_;
+    private Nota sol_;
+    private Nota la_;
+    private Nota si_;
     
-    public Juego(ArrayList<Melodia> incluidas) {
+    public Juego(ArrayList<Melodia> incluidas) throws IOException {
         this.incluidas = incluidas;
+        this.do_ = new Nota("DO", "do2.wav");
+        this.re_ = new Nota("RE", "re2.wav");
+        this.mi_ = new Nota("MI", "mi2.wav");
+        this.fa_ = new Nota("FA", "fa2.wav");
+        this.sol_ = new Nota("SOL", "sol2.wav");
+        this.la_ = new Nota("LA", "la2.wav");
+        this.si_ = new Nota("SI", "si2.wav");
         this.nuevas = new ArrayList();
     }
 

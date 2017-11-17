@@ -18,12 +18,16 @@ import java.util.*;
  * @author El PcGamer
  */
 public class LogicaPiano {
+    
+    private Juego juego;
+
+    public LogicaPiano(Juego juego) throws IOException {
+        this.juego = juego;
+        this.juego.setIncluidas(this.cargar("canciones"));
+    }
      public static void main(String[] args) throws IOException{
-        LogicaPiano logica = new LogicaPiano();
-        System.out.println("1");
-        ArrayList<Melodia> incluidas = logica.cargar("canciones.txt");
-        System.out.println("2");
-        Juego j = new Juego(incluidas);
+         Juego j = new Juego(new ArrayList());
+        LogicaPiano logica = new LogicaPiano(j);
         VentanaVisualizacion ventana = new VentanaVisualizacion(j);
         j.setVentana(ventana);
         ventana.add(ventana.getPanel_actual());
