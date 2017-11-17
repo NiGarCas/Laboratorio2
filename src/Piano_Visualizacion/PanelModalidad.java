@@ -13,12 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -76,7 +74,8 @@ public class PanelModalidad extends JPanel implements ActionListener{
                 this.ventana.actualizarPanel(this.ventana.getPaneles()[1]);
                 break;
             default:
-                JuegoAdivinar juegoadivinar = new JuegoAdivinar(this.ventana.getJuego());
+                JOptionPane.showMessageDialog(this.ventana, "Tiene 20 intentos para adivinar el nombre de 5 canciones. Puede reproducir cada canción las veces que desee");
+                JuegoAdivinar juegoadivinar = new JuegoAdivinar(this.ventana.getJuego(),this.ventana.getJuego().getIncluidas());
                 PanelAdivinar paneladivinar = new PanelAdivinar(this.ventana, this.ventana.getJuego().getJadivinar());
                 this.ventana.agregarPanelAdivinar(paneladivinar);
                 this.ventana.actualizarPanel(this.ventana.getPaneles()[2]);

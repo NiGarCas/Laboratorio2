@@ -6,12 +6,14 @@
 package Piano_Visualizacion;
 
 import Piano_Datos.JuegoAdivinar;
+import Piano_Datos.Melodia;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -22,6 +24,7 @@ public class PanelAdivinar extends JPanel  implements ActionListener{
     
     private JuegoAdivinar juego;
     private VentanaVisualizacion ventana;
+    private Melodia cancion_actual;
     private JPanel arriba;
     private JPanel centro;
     private JPanel abajo;
@@ -29,14 +32,53 @@ public class PanelAdivinar extends JPanel  implements ActionListener{
     public PanelAdivinar(VentanaVisualizacion ventana, JuegoAdivinar juego) {
         this.juego = juego;
         this.ventana = ventana;
+        this.cancion_actual = this.juego.getJuego().getIncluidas().get(0);
         this.agregarComponentes();
-//        this.setLayout(new GridLayout(6,1));
-
     }
+
+    public JuegoAdivinar getJuego() {
+        return juego;
+    }
+
+    public void setJuego(JuegoAdivinar juego) {
+        this.juego = juego;
+    }
+
+    public VentanaVisualizacion getVentana() {
+        return ventana;
+    }
+
+    public void setVentana(VentanaVisualizacion ventana) {
+        this.ventana = ventana;
+    }
+
+
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JButton source = (JButton)ae.getSource();
+        String boton = source.getText();
+        switch (boton) {
+            case "REPRODUCIR":
+                this.cancion_actual.reproducir();
+                break;
+            case "ADIVINAR":
+                break;
+            case "Anterior Canción":
+                this.juego.anteriorCancion();
+                this.removeAll();
+                this.agregarComponentes();
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[2]);
+                break;
+            case "Siguiente Canción":
+                this.juego.siguienteCancion();
+                this.removeAll();
+                this.agregarComponentes();
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[2]);
+                break;
+            default:
+                break;
+        }
     }
 
     private void agregarComponentes() {
@@ -45,10 +87,16 @@ public class PanelAdivinar extends JPanel  implements ActionListener{
         this.centro = new JPanel(new GridLayout(2,1));
         this.abajo = new JPanel(new GridLayout(2,3));
         
-        this.arriba.add(new JLabel("CANCIÓN # " ));
+        this.arriba.add(new JLabel("CANCIÓN # " +  cancion_actual.getNumero()));
         this.arriba.add(new JLabel (" "));
-        this.arriba.add(new JLabel ("Intentos restantes: "));
-        this.arriba.add(new JLabel ("Adivinada/Aun sin adivinar "));
+        this.arriba.add(new JLabel ("Intentos restantes: " + this.juego.getIntentos()));
+        String adivinada;
+        if(this.cancion_actual.isAdivinada()){
+            adivinada = "ADIVINADA, SIGA CON LAS CANCIONES QUE LE RESTAN";
+        }else{
+            adivinada = "AUN NO HA SIDO ADIVINADA";
+        }
+        this.arriba.add(new JLabel (adivinada));
         this.arriba.add(new JLabel (" "));
         this.arriba.add(new JLabel (" "));
         this.arriba.add(new JLabel (" "));
@@ -64,6 +112,7 @@ public class PanelAdivinar extends JPanel  implements ActionListener{
 
         JButton anterior =  new JButton("Anterior Canción");
         anterior.addActionListener(this);
+        this.abajo.add(new JLabel (" "));
         JButton siguiente =  new JButton("Siguiente Canción");
         siguiente.addActionListener(this);
         this.abajo.add(new JLabel (" "));

@@ -17,7 +17,7 @@ public class JuegoAdivinar {
     private Melodia cancion_actual;
     private int intentos;
 
-    public JuegoAdivinar(Juego juego) {
+    public JuegoAdivinar(Juego juego, ArrayList<Melodia> canciones) {
         this.juego = juego;
         this.canciones = this.juego.getIncluidas();
         this.cancion_actual = this.canciones.get(0);
@@ -54,6 +54,34 @@ public class JuegoAdivinar {
 
     public void setIntentos(int intentos) {
         this.intentos = intentos;
+    }
+    
+    public void anteriorCancion(){
+    for (int i = 0; i< this.canciones.size(); i++){
+            if(cancion_actual.getNombre().equals(this.canciones.get(i).getNombre())){
+                if(i == 0){
+                    cancion_actual = this.canciones.get(this.canciones.size() - 1);
+                    break;
+                }else{
+                    cancion_actual = this.canciones.get(i-1);
+                    break;
+                }
+            }
+        }
+    }
+    
+    public void siguienteCancion(){
+    for (int i = 0; i< this.canciones.size(); i++){
+            if(cancion_actual.getNombre().equals(this.canciones.get(i).getNombre())){
+                if(i == (this.canciones.size() - 1)){
+                    cancion_actual = this.canciones.get(0);
+                    break;
+                }else{
+                    cancion_actual = this.canciones.get(i+1);
+                    break;
+                }
+            }
+        }
     }
     
 }

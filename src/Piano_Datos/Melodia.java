@@ -16,9 +16,11 @@ public class Melodia {
     private ArrayList<Nota> notas;
     private String nombre;
     private boolean adivinada;
+    private int numero;
 
     public Melodia() {
         this.notas = new ArrayList<>();
+        this.adivinada = false;
     }
 
     public String getNombre() {
@@ -43,6 +45,15 @@ public class Melodia {
     public void agregarNota(Nota nota){
         this.notas.add(nota);
     }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+    
     public void reproducir(){
         for(Nota nota: this.notas){
             nota.reproducir();
