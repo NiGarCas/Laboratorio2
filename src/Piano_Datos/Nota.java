@@ -16,10 +16,14 @@ import java.io.InputStream;
  */
 public class Nota {
      private String nombre;
-    private InputStream audio;
+     private InputStream audio;
+     private AudioStream sonido;
 
-    public Nota(String nombre, InputStream audio) {
+    public Nota(String nombre, String nombreAudio) throws FileNotFoundException, IOException {
         this.nombre = nombre;
+        audio= new FileInputStream(new File(nombreAudio));
+        sonido = new AudioStream(audio);
+        AudioPlayer.player.start(sonido);
         this.audio = audio;
     }
 

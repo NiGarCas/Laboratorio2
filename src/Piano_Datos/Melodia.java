@@ -19,10 +19,9 @@ public class Melodia {
     public Melodia() {
         this.notas = new ArrayList<>();
     }
-    public void addNota(String nombre,InputStream audio){
-        Nota n= new Nota(nombre,audio);
-        this.notas.add(n);
-    }
 
-   
+    public ArrayList<Nota> getNotas() {
+        return notas;
+    }
+    
 }

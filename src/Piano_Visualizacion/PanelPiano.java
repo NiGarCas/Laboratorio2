@@ -19,143 +19,112 @@ import javax.swing.*;
  * @author El PcGamer
  */
 public class PanelPiano extends JPanel implements ActionListener {
-    private Juego juego;
+    
+    private JuegoPiano juego;
     private VentanaVisualizacion ventana;
     private boolean jugando;
-    private JPanel pjuego;
+    private JPanel arriba;
     private JPanel piano;
-    private JButton do_;
-    private JButton re_;
-    private JButton mi_;
-    private JButton fa_;
-    private JButton sol_;
-    private JButton la_;
-    private JButton si_;
+//    private Nota do_;
+//    private Nota re_;
+//    private Nota mi_;
+//    private Nota fa_;
+//    private Nota sol_;
+//    private Nota la_;
+//    private Nota si_;
     
     public PanelPiano(VentanaVisualizacion ventana) {
-        this.ventana=ventana;
-        this.piano = new JPanel();
-        this.pjuego = new JPanel();
-        this.do_ = new JButton("DO");
-        this.do_.addActionListener(this);
-        this.re_ =  new JButton("RE");
-        this.re_.addActionListener(this);
-        this.mi_ =  new JButton("MI");
-        this.mi_.addActionListener(this);
-        this.fa_ =  new JButton("FA");
-        this.fa_.addActionListener(this);
-        this.sol_ =  new JButton("SOL");
-        this.sol_.addActionListener(this);
-        this.la_ =  new JButton("LA");
-        this.la_.addActionListener(this);
-        this.si_ =  new JButton("SI");
-        this.si_.addActionListener(this);
-     
-        this.setLayout(new GridLayout(1,7)); 
+        this.ventana = ventana;
+        this.agregarComponentes();
         
-        this.piano.add(this.do_);
-        this.piano.add(this.re_);
-        this.piano.add(this.mi_);
-        this.piano.add(this.fa_);
-        this.piano.add(this.sol_);
-        this.piano.add(this.la_);
-        this.piano.add(this.si_);
-        this.add(piano);
       
     }
-    public Juego getJuego() {
+    public JuegoPiano getJuego() {
         return juego;
     }
 
-    public void setJuego(Juego juego) {
+    public void setJuego(JuegoPiano juego) {
         this.juego = juego;
     }
-    private void doActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        try{
-            InputStream audio= new FileInputStream(new File("do2.wav"));
-            AudioStream music= new AudioStream(audio);
-            AudioPlayer.player.start(music);
-            Nota n= new Nota("DO",audio);
-        }catch(Exception e){
-            }
-    }                                              
 
-    private void reActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        try{
-            InputStream audio= new FileInputStream(new File("re2.wav"));
-            AudioStream music= new AudioStream(audio);
-            AudioPlayer.player.start(music);
-            Nota n= new Nota("RE",audio);
-        }catch(Exception e){
-            }
-    }                                              
-
-    private void miActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        try{
-            InputStream audio= new FileInputStream(new File("mi2.wav"));
-            AudioStream music= new AudioStream(audio);
-            AudioPlayer.player.start(music);
-            Nota n= new Nota("MI",audio);
-        }catch(Exception e){
-            }
-    }                                              
-
-    private void faActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        try{
-            InputStream audio= new FileInputStream(new File("fa2.wav"));
-            AudioStream music= new AudioStream(audio);
-            AudioPlayer.player.start(music);
-            Nota n= new Nota("FA",audio);
-        }catch(Exception e){
-            }
-    }                                              
-
-    private void solActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        try{
-            InputStream audio= new FileInputStream(new File("sol2.wav"));
-            AudioStream music= new AudioStream(audio);
-            AudioPlayer.player.start(music);
-            Nota n= new Nota("SOL",audio);
-        }catch(Exception e){
-            }
-    }                                              
-
-    private void laActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        try{
-            InputStream audio= new FileInputStream(new File("la2.wav"));
-            AudioStream music= new AudioStream(audio);
-            AudioPlayer.player.start(music);
-            Nota n= new Nota("LA",audio);
-        }catch(Exception e){
-            }    
-    }                                              
-
-    private void siActionPerformed(java.awt.event.ActionEvent evt) {                                               
-         try{
-            InputStream audio= new FileInputStream(new File("si2.wav"));
-            AudioStream music= new AudioStream(audio);
-            AudioPlayer.player.start(music);
-            Nota n= new Nota("SI",audio);
-        }catch(Exception e){
-            }
-    }
     @Override
     public void actionPerformed(ActionEvent ae) {
-        if(ae.getSource()== this.do_){
-            doActionPerformed(ae);
-        }else if(ae.getSource()== this.re_){
-            reActionPerformed(ae);
-        }else if(ae.getSource()== this.mi_){
-            miActionPerformed(ae);
-        }else if(ae.getSource()== this.fa_){
-            faActionPerformed(ae);
-        }else if(ae.getSource()== this.sol_){
-            solActionPerformed(ae);
-        }else if(ae.getSource()== this.la_){
-            laActionPerformed(ae);
-        } else if(ae.getSource()== this.si_){
-            siActionPerformed(ae);
+        JButton source = (JButton)ae.getSource();
+        String boton = source.getText();
+        switch (boton){
+            case "DO":
+                source.setBackground(Color.yellow);
+                AudioPlayer.player.start(this.juego.getNotas()[0].getAudio());
+                source.setBackground(Color.white);
+                break;
+            case "RE":
+                source.setBackground(Color.yellow);
+                AudioPlayer.player.start(this.juego.getNotas()[1].getAudio());
+                source.setBackground(Color.white);
+                break;
+            case "MI":
+                source.setBackground(Color.yellow);
+                AudioPlayer.player.start(this.juego.getNotas()[2].getAudio());
+                source.setBackground(Color.white);
+                break;
+            case "FA":
+                source.setBackground(Color.yellow);
+                AudioPlayer.player.start(this.juego.getNotas()[3].getAudio());
+                source.setBackground(Color.white);
+                break;
+            case "SOL":
+                source.setBackground(Color.yellow);
+                AudioPlayer.player.start(this.juego.getNotas()[4].getAudio());
+                source.setBackground(Color.white);
+                break;
+            case "LA":
+                source.setBackground(Color.yellow);
+                AudioPlayer.player.start(this.juego.getNotas()[5].getAudio());
+                source.setBackground(Color.white);
+                break;
+            case "SI":
+                source.setBackground(Color.yellow);
+                AudioPlayer.player.start(this.juego.getNotas()[6].getAudio());
+                source.setBackground(Color.white);
+                break;
         }
+        
+    }
+
+    public void agregarComponentes() {
+        this.piano = new JPanel();
+        this.arriba = new JPanel(new GridLayout(3,1));
+        
+        this.arriba.add(new JLabel("Turno actual: " + this.juego.getTurno().getNombre()));
+        this.arriba.add(new JLabel (" "));
+        this.arriba.add(new JLabel (" "));
+        JButton do_ = new JButton("DO");
+        do_.addActionListener(this);
+        JButton re_ =  new JButton("RE");
+        re_.addActionListener(this);
+        JButton mi_ =  new JButton("MI");
+        mi_.addActionListener(this);
+        JButton fa_ =  new JButton("FA");
+        fa_.addActionListener(this);
+        JButton sol_ =  new JButton("SOL");
+        sol_.addActionListener(this);
+        JButton la_ =  new JButton("LA");
+        la_.addActionListener(this);
+        JButton si_ =  new JButton("SI");
+        si_.addActionListener(this);
+     
+        this.piano.setLayout(new GridLayout(1,7)); 
+        this.piano.add(do_);
+        this.piano.add(re_);
+        this.piano.add(mi_);
+        this.piano.add(fa_);
+        this.piano.add(sol_);
+        this.piano.add(la_);
+        this.piano.add(si_);
+        
+        this.setLayout(new BorderLayout());
+        this.add(arriba, BorderLayout.NORTH);
+        this.add(piano, BorderLayout.CENTER);
     }
 }      
     

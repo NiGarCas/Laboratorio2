@@ -4,16 +4,9 @@
  * and open the template in the editor.
  */
 package Piano_Logica;
-import Piano_Visualizacion.*;
-import java.awt.GridLayout;
-import sun.audio.*;
-import java.io.*;        
+import Piano_Datos.Juego;
+import Piano_Visualizacion.*;       
 import java.util.*;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,18 +14,9 @@ import javax.swing.JOptionPane;
  */
 public class LogicaPiano {
      public static void main(String[] args){
-        VentanaVisualizacion ventana = new VentanaVisualizacion(1);
-        ventana.setVisible(true);
-//        VentanaModalidad inicial = new VentanaModalidad();
-//        while (inicial.getPanel().getModo() == 0){
-//            if(inicial.getPanel().getModo() == 1){
-//            VentanaVisualizacion ventana = new VentanaVisualizacion(1);
-//            ventana.setVisible(true);
-//        }else if(inicial.getPanel().getModo() == 2){
-//            VentanaVisualizacion ventana = new VentanaVisualizacion(2);
-//            ventana.setVisible(true);
-//        }
-//            inicial.setVisible(true);
-//        }
+        Juego j = new Juego(new ArrayList());
+        VentanaVisualizacion ventana = new VentanaVisualizacion(j);
+        j.setVentana(ventana);
+        ventana.add(ventana.getPanel_actual());
      }
 }

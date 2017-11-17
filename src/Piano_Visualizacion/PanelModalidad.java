@@ -5,10 +5,17 @@
  */
 package Piano_Visualizacion;
 
+import Piano_Datos.JuegoPiano;
+import Piano_Datos.Jugador;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,45 +26,57 @@ import javax.swing.JPanel;
  */
 public class PanelModalidad extends JPanel implements ActionListener{
     
-    private int modo;
-    private VentanaModalidad ventana;
+    private VentanaVisualizacion ventana;
+    JComboBox menu;
     
-    public PanelModalidad(VentanaModalidad ventana) {
+    public PanelModalidad(VentanaVisualizacion ventana) {
         this.ventana = ventana;
-        this.setLayout(new GridLayout(2,2));
-        this.add(new JLabel("BIENVENIDO. Escoja la modalidad del juego"));
+        this.setLayout(new GridLayout(6,1));
+        this.add(new JLabel("BIENVENIDO"));
+        this.add(new JLabel("ESCOJA LA MODALIDAD DE JUEGO"));
         this.add(new JLabel(" "));
-        JButton modo1 = new JButton("1 vs 1");
-        this.add(modo1);
-        JButton modo2 = new JButton("Adivina la cancion");
-        this.add(modo2);
-        this.modo = 0;
+        this.menu = new JComboBox();
+        menu.addItem("Recuerda la secuencia - Multijugador");
+        menu.addItem("Adivina la cancion - 1 Jugador");
+        this.add(menu);
+        this.add(new JLabel(" "));
+        JButton aceptar = new JButton("ACEPTAR");
+        aceptar.addActionListener(this);
+        this.add(aceptar);
     }
 
-    public int getModo() {
-        return modo;
-    }
-
-    public VentanaModalidad getVentana() {
+    public VentanaVisualizacion getVentana() {
         return ventana;
     }
 
-    public void setVentana(VentanaModalidad ventana) {
+    public void setVentana(VentanaVisualizacion ventana) {
         this.ventana = ventana;
     }
     
     @Override
     public void actionPerformed(ActionEvent ae) {
+        String opcion = this.menu.getSelectedItem().toString();
+        System.out.println(opcion);
         JButton source = (JButton)ae.getSource();
         String boton = source.getText();
-        switch (boton){
-            case "BIENVENIDO. Escoja la modalidad del juego":
-                this.modo = 1;
+        switch (opcion){
+            case "Recuerda la secuencia - Multijugador":
+                
+                ArrayList<Jugador> jugadores = this.ventana.getJuego().registrarJugadores();
+                JuegoPiano juegopiano = null; 
+        try {
+            juegopiano = new JuegoPiano(jugadores);
+        } catch (IOException ex) {
+            
+        }
+                PanelPiano panelpiano = new PanelPiano(this.ventana);
+                panelpiano.setJuego(juegopiano);
+                this.ventana.agregarPanelPiano(panelpiano);
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[1]);
                 break;
             default:
-                this.modo = 2;
+                this.ventana.actualizarPanel(this.ventana.getPaneles()[2]);
         }
-        this.ventana.dispose();
     }
     
     

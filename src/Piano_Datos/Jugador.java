@@ -13,12 +13,10 @@ import java.util.*;
  */
 public class Jugador {
      private String nombre;
-     private boolean turno;
-     private boolean ganador;
+
      
    public Jugador(String nombre) {
         this.nombre = nombre;
-        this.ganador = false;
         }
    
 
