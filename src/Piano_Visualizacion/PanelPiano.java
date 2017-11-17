@@ -22,7 +22,6 @@ public class PanelPiano extends JPanel implements ActionListener {
     
     private JuegoPiano juego;
     private VentanaVisualizacion ventana;
-    private boolean jugando;
     private JPanel arriba;
     private JPanel piano;
 //    private Nota do_;
@@ -33,8 +32,9 @@ public class PanelPiano extends JPanel implements ActionListener {
 //    private Nota la_;
 //    private Nota si_;
     
-    public PanelPiano(VentanaVisualizacion ventana) {
+    public PanelPiano(VentanaVisualizacion ventana, JuegoPiano juego) {
         this.ventana = ventana;
+        this.juego = juego;
         this.agregarComponentes();
         
       
@@ -53,67 +53,67 @@ public class PanelPiano extends JPanel implements ActionListener {
         String boton = source.getText();
         switch (boton){
             case "DO":
-                source.setBackground(Color.yellow);
-                AudioPlayer.player.start(this.juego.getNotas()[0].getAudio());
-                source.setBackground(Color.white);
+                this.juego.getNotas()[0].reproducir();
+                this.juego.revisar(this.juego.getNotas()[0]);
                 break;
             case "RE":
-                source.setBackground(Color.yellow);
-                AudioPlayer.player.start(this.juego.getNotas()[1].getAudio());
-                source.setBackground(Color.white);
+                this.juego.getNotas()[1].reproducir();
+                this.juego.revisar(this.juego.getNotas()[1]);
                 break;
             case "MI":
-                source.setBackground(Color.yellow);
-                AudioPlayer.player.start(this.juego.getNotas()[2].getAudio());
-                source.setBackground(Color.white);
+                this.juego.getNotas()[2].reproducir();
+                this.juego.revisar(this.juego.getNotas()[2]);
                 break;
             case "FA":
-                source.setBackground(Color.yellow);
-                AudioPlayer.player.start(this.juego.getNotas()[3].getAudio());
-                source.setBackground(Color.white);
+                this.juego.getNotas()[3].reproducir();
+                this.juego.revisar(this.juego.getNotas()[3]);
                 break;
             case "SOL":
-                source.setBackground(Color.yellow);
-                AudioPlayer.player.start(this.juego.getNotas()[4].getAudio());
-                source.setBackground(Color.white);
+                this.juego.getNotas()[4].reproducir();
+                this.juego.revisar(this.juego.getNotas()[4]);
                 break;
             case "LA":
-                source.setBackground(Color.yellow);
-                AudioPlayer.player.start(this.juego.getNotas()[5].getAudio());
-                source.setBackground(Color.white);
+                this.juego.getNotas()[5].reproducir();
+                this.juego.revisar(this.juego.getNotas()[5]);
                 break;
             case "SI":
-                source.setBackground(Color.yellow);
-                AudioPlayer.player.start(this.juego.getNotas()[6].getAudio());
-                source.setBackground(Color.white);
+                this.juego.getNotas()[6].reproducir();
+                this.juego.revisar(this.juego.getNotas()[6]);
                 break;
         }
-        
+        this.removeAll();
+        this.agregarComponentes();
+        this.ventana.actualizarPanel(this.ventana.getPaneles()[1]);
     }
 
     public void agregarComponentes() {
-        this.piano = new JPanel();
+        this.piano = new JPanel(new GridLayout(1,7));
         this.arriba = new JPanel(new GridLayout(3,1));
-        
         this.arriba.add(new JLabel("Turno actual: " + this.juego.getTurno().getNombre()));
         this.arriba.add(new JLabel (" "));
         this.arriba.add(new JLabel (" "));
         JButton do_ = new JButton("DO");
+        do_.setBackground(Color.white);
         do_.addActionListener(this);
         JButton re_ =  new JButton("RE");
+        re_.setBackground(Color.white);
         re_.addActionListener(this);
         JButton mi_ =  new JButton("MI");
+        mi_.setBackground(Color.white);
         mi_.addActionListener(this);
         JButton fa_ =  new JButton("FA");
+        fa_.setBackground(Color.white);
         fa_.addActionListener(this);
         JButton sol_ =  new JButton("SOL");
+        sol_.setBackground(Color.white);
         sol_.addActionListener(this);
         JButton la_ =  new JButton("LA");
+        la_.setBackground(Color.white);
         la_.addActionListener(this);
         JButton si_ =  new JButton("SI");
+        si_.setBackground(Color.white);
         si_.addActionListener(this);
      
-        this.piano.setLayout(new GridLayout(1,7)); 
         this.piano.add(do_);
         this.piano.add(re_);
         this.piano.add(mi_);

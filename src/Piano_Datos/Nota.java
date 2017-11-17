@@ -4,11 +4,15 @@
  * and open the template in the editor.
  */
 package Piano_Datos;
+import java.applet.Applet;
+import java.applet.AudioClip;
 import javax.swing.JFrame;
 import sun.audio.*;
 import java.util.*;        
 import java.io.*;     
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  *
@@ -17,14 +21,17 @@ import java.io.InputStream;
 public class Nota {
      private String nombre;
      private InputStream audio;
-     private AudioStream sonido;
+     private AudioClip sonido;
 
     public Nota(String nombre, String nombreAudio) throws FileNotFoundException, IOException {
         this.nombre = nombre;
-        audio= new FileInputStream(new File(nombreAudio));
-        sonido = new AudioStream(audio);
-        AudioPlayer.player.start(sonido);
-        this.audio = audio;
+        try {
+                 URL url = new URL("file:" + nombreAudio);
+                 this.sonido = Applet.newAudioClip(url);
+                 
+             } catch (MalformedURLException ex) {
+                 
+             }
     }
 
     public String getNombre() {
@@ -41,5 +48,9 @@ public class Nota {
 
     public void setAudio(InputStream audio) {
         this.audio = audio;
+    }
+    
+    public void reproducir(){
+        this.sonido.play();
     }
 }

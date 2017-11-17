@@ -27,6 +27,10 @@ public class Juego {
         this.nuevas = new ArrayList();
     }
 
+    public ArrayList<Melodia> getIncluidas() {
+        return incluidas;
+    }
+    
     public void setIncluidas(ArrayList<Melodia> incluidas) {
         this.incluidas = incluidas;
     }
@@ -35,16 +39,32 @@ public class Juego {
         this.nuevas = nuevas;
     }
 
+    public JuegoAdivinar getJadivinar() {
+        return jadivinar;
+    }
+
     public void setJadivinar(JuegoAdivinar jadivinar) {
         this.jadivinar = jadivinar;
+    }
+
+    public JuegoPiano getJsecuencia() {
+        return jsecuencia;
     }
 
     public void setJsecuencia(JuegoPiano jsecuencia) {
         this.jsecuencia = jsecuencia;
     }
 
+    public VentanaVisualizacion getVentana() {
+        return ventana;
+    }
+    
     public void setVentana(VentanaVisualizacion ventana) {
         this.ventana = ventana;
+    }
+
+    public ArrayList<Melodia> getNuevas() {
+        return nuevas;
     }
     
     

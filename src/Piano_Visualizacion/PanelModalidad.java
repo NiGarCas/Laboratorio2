@@ -5,6 +5,7 @@
  */
 package Piano_Visualizacion;
 
+import Piano_Datos.JuegoAdivinar;
 import Piano_Datos.JuegoPiano;
 import Piano_Datos.Jugador;
 import java.awt.GridLayout;
@@ -56,25 +57,28 @@ public class PanelModalidad extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae) {
         String opcion = this.menu.getSelectedItem().toString();
-        System.out.println(opcion);
         JButton source = (JButton)ae.getSource();
         String boton = source.getText();
         switch (opcion){
             case "Recuerda la secuencia - Multijugador":
                 
                 ArrayList<Jugador> jugadores = this.ventana.getJuego().registrarJugadores();
+                
                 JuegoPiano juegopiano = null; 
         try {
-            juegopiano = new JuegoPiano(jugadores);
+            juegopiano = new JuegoPiano(this.ventana.getJuego(),jugadores);
+            this.ventana.getJuego().setJsecuencia(juegopiano);
         } catch (IOException ex) {
             
         }
-                PanelPiano panelpiano = new PanelPiano(this.ventana);
-                panelpiano.setJuego(juegopiano);
+                PanelPiano panelpiano = new PanelPiano(this.ventana, this.ventana.getJuego().getJsecuencia());
                 this.ventana.agregarPanelPiano(panelpiano);
                 this.ventana.actualizarPanel(this.ventana.getPaneles()[1]);
                 break;
             default:
+                JuegoAdivinar juegoadivinar = new JuegoAdivinar(this.ventana.getJuego());
+                PanelAdivinar paneladivinar = new PanelAdivinar(this.ventana, this.ventana.getJuego().getJadivinar());
+                this.ventana.agregarPanelAdivinar(paneladivinar);
                 this.ventana.actualizarPanel(this.ventana.getPaneles()[2]);
         }
     }
