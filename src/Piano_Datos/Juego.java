@@ -80,6 +80,62 @@ public class Juego {
     public ArrayList<Melodia> getNuevas() {
         return nuevas;
     }
+
+    public Nota getDo_() {
+        return do_;
+    }
+
+    public void setDo_(Nota do_) {
+        this.do_ = do_;
+    }
+
+    public Nota getRe_() {
+        return re_;
+    }
+
+    public void setRe_(Nota re_) {
+        this.re_ = re_;
+    }
+
+    public Nota getMi_() {
+        return mi_;
+    }
+
+    public void setMi_(Nota mi_) {
+        this.mi_ = mi_;
+    }
+
+    public Nota getFa_() {
+        return fa_;
+    }
+
+    public void setFa_(Nota fa_) {
+        this.fa_ = fa_;
+    }
+
+    public Nota getSol_() {
+        return sol_;
+    }
+
+    public void setSol_(Nota sol_) {
+        this.sol_ = sol_;
+    }
+
+    public Nota getLa_() {
+        return la_;
+    }
+
+    public void setLa_(Nota la_) {
+        this.la_ = la_;
+    }
+
+    public Nota getSi_() {
+        return si_;
+    }
+
+    public void setSi_(Nota si_) {
+        this.si_ = si_;
+    }
     
     
     public ArrayList<Jugador> registrarJugadores() {

@@ -23,7 +23,9 @@ public class LogicaPiano {
 
     public LogicaPiano(Juego juego) throws IOException {
         this.juego = juego;
-        this.juego.setIncluidas(this.cargar("canciones"));
+//        ArrayList<Melodia> m = this.cargar("c.txt");
+//        System.out.println(m.get(0).getNombre());
+//        this.juego.setIncluidas(m);
     }
      public static void main(String[] args) throws IOException{
          Juego j = new Juego(new ArrayList());
@@ -53,25 +55,25 @@ public class LogicaPiano {
                    while (nota){
                        switch(tipo){
                            case "DO":
-                               cancion.agregarNota(new Nota("DO","do2.wav"));
+                               cancion.agregarNota(this.juego.getDo_());
                                break;
                            case "RE":
-                               cancion.agregarNota(new Nota("RE","re2.wav"));
+                               cancion.agregarNota(this.juego.getRe_());
                                break;
                            case "MI":
-                               cancion.agregarNota(new Nota("MI","mi2.wav"));
+                               cancion.agregarNota(this.juego.getMi_());
                                break;
                            case "FA":
-                               cancion.agregarNota(new Nota("FA","fa2.wav"));
+                               cancion.agregarNota(this.juego.getFa_());
                                break;
                            case "SOL":
-                               cancion.agregarNota(new Nota("SOL","sol2.wav"));
+                               cancion.agregarNota(this.juego.getSol_());
                                break;
                            case "LA":
-                               cancion.agregarNota(new Nota("LA","la2.wav"));
+                               cancion.agregarNota(this.juego.getLa_());
                                break;
                            case "SI":
-                               cancion.agregarNota(new Nota("SI","si2.wav"));
+                               cancion.agregarNota(this.juego.getSi_());
                                break;
                        }
                    }

@@ -96,7 +96,6 @@ public class JuegoPiano {
             ultimo = false;
         }else{
             provisional.agregarNota(nota);
-            System.out.println(verificar_ultima());
             if (verificar_ultima()){
                 if(provisional.getNotas().size() == melodia.getNotas().size()){
                     ultimo = true;
@@ -125,6 +124,7 @@ public class JuegoPiano {
             int guardar = JOptionPane.showConfirmDialog(this.juego.getVentana(), "¿Desean guardar la melodía creada?");
             if(guardar == JOptionPane.YES_OPTION){
                 this.juego.getNuevas().add(melodia);
+                this.juego.getVentana().dispose();
                 JOptionPane.showMessageDialog(this.juego.getVentana(),"Melodía Guardada");
             }
         }

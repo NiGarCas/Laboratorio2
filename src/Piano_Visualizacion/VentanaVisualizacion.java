@@ -29,7 +29,7 @@ public class VentanaVisualizacion extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocation(400,220);
         this.setSize(480, 210);
-        this.setTitle("Panaderias El Triunfo");
+        this.setTitle("Secuencia");
         this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
         this.juego = juego;
